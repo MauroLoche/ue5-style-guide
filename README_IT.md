@@ -13,6 +13,6 @@ Questa repository ora si trova su https://github.com/Allar/ue5-style-guide. Il d
 ## Questo documento è strettamente per UE4. Per UE5/v2, clicka il v2 branch
 ## Linter e documentazione sul manuale di stile
 
-Documentazioni più tecniche riguardanti Linter e il manuale di stile possono essere trovati presso la nostra [ReadTheDocs](https://ue4-style-guide.readthedocs.io/en/latest/) pagina.
+Documentazioni più tecniche riguardanti Linter e il manuale di stile possono essere trovati presso la nostra pagina [ReadTheDocs](https://ue4-style-guide.readthedocs.io/en/latest/).
 
 ## Confrontiamoci su questo manuale di stile
