@@ -10,7 +10,7 @@ Fortemente ispirato dalla [Airbnb Javascript Style Guide](https://github.com/air
 
 Questa repository ora si trova su https://github.com/Allar/ue5-style-guide. Il default branch di questa repository è stato rinominato `main`.
 
-## Questo documento è strettamente per UE4. Per UE5/v2, clicka il v2 branch
+## Questo documento è strettamente per UE4. Per UE5/v2, clicka il branch v2
 ## Linter e documentazione sul manuale di stile
 
 Documentazioni più tecniche riguardanti Linter e il manuale di stile possono essere trovati presso la nostra pagina [ReadTheDocs](https://ue4-style-guide.readthedocs.io/en/latest/).
