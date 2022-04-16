@@ -159,3 +159,60 @@ Al fine di facilitare l'indicizzazione e la fruibilità del documento ho preferi
   - [7.2 Texture Density dovrebbe essere uniforme](#textures-density)
   - [7.3 Textures non dovrebbero essere più grandi di 8192](#textures-max-size)
   - [7.4 Textures dovrebbero essere raggruppate correttamente](#textures-group)
+
+## Important Terminology
+
+<a name="terms-level-map"></a>
+##### Levels/Maps
+
+La parola 'map' generally si riferisce genericamente a ciò che una persona qualsiasi chiama 'level' e può essere usato in maniera interscambiabile. Controlla la storia di questo termine [qui](https://en.wikipedia.org/wiki/Level_(video_gaming)).
+
+<a name="terms-identifiers"></a>
+##### Identifiers
+Un `Identifier` is anything that resembles or serves as a "name". Per esempio, il nome di un asset, o il nome di un material later, o una proprietà del blueprint, una variable, o il nome di una cartella, or for a data table row name, ecc...
+
+<a name="terms-cases"></a>
+##### Cases
+
+There are a few different ways you can `CaseWordsWhenNaming`. Here are some common casing types:
+
+> ###### PascalCase
+>
+> Capitalize ogni parola e rimuovi tutti gli spazi, e.g. `DesertEagle`, `StyleGuide`, `ASeriesOfWords`.
+>
+> ###### camelCase
+>
+> La prima lettera è sempre minuscola ma ogni parola seguente inizia con un maiuscolo, e.g. `desertEagle`, `styleGuide`, `aSeriesOfWords`.
+>
+> ###### Snake_case
+>
+> Words can arbitrarily start upper or lowercase but words are separated by an underscore, e.g. `desert_Eagle`, `Style_Guide`, `a_Series_of_Words`.
+
+<a name="terms-var-prop"></a>
+##### Variables / Properties
+
+The words 'variable' and 'property' in most contexts are interchangable. If they are both used together in the same context however:
+
+<a name="terms-property"></a>
+###### Property
+In genere ci si riferisce a una variable definita in una class. Per esempio, se `BP_Barrel` had a variable `bExploded`, `bExploded` may be referred to come una proprietà di `BP_Barrel`.
+
+When in the context of a class, it is often used per implicare l'accesso a data definito precedentemente.
+
+<a name="terms-variable"></a>
+###### Variable
+In genere refers a una variable definita come una function argument o una local variable dentro una function.
+
+Nel contesto di una class, è spesso usato per convogliare dialogo riguardo la sua definition e cosa questa conterrà.
+
+<a name="0"></a>
+## 0. Principles
+
+Questi principles sono stati adattati da [idomatic.js style guide](https://github.com/rwaldron/idiomatic.js/).
+
+<a name="0.1"></a>
+### 0.1 Se il tuo progetto UE4 ha già un manuale di stile, dovresti seguirlo
+
+Se stai lavorando a un progetto da solo o con un team che ha già un manuale di stile pre-esistente, dovresti rispettarlo. Qualsiasi inconsistenza tra un manuale di stile già esistente questa guida e quella già presente cede, dando priorità al manuale di stile scelto dall'azienda.
+
+I manuali di stile dovrebbero essere documenti viventi. Dovresti proporre cambi ad esso e a questa guida se ritieni che attraverso il cambiamento tutti ne possano trarre vantaggio.
