@@ -121,14 +121,14 @@ Al fine di facilitare l'indicizzazione e la fruibilità del documento ho preferi
     - [3.2.8 Config Variables](#bp-vars-config)
   - [3.3 Functions, Events, and Event Dispatchers](#bp-functions)
     - [3.3.1 Function Naming](#bp-funcs-naming)
-    - [3.3.1.1 All Functions Should Be Verbs](#bp-funcs-naming-verbs)
+    - [3.3.1.1 Tutte le Functions Should Be Verbs](#bp-funcs-naming-verbs)
     - [3.3.1.2 Property RepNotify Functions Always `OnRep_Variable`](#bp-funcs-naming-onrep)
     - [3.3.1.3 Info Functions Returning Bool Should Ask Questions](#bp-funcs-naming-bool)
     - [3.3.1.4 Event Handlers and Dispatchers Should Start With `On`](#bp-funcs-naming-eventhandlers)
     - [3.3.1.5 Remote Procedure Calls Should Be Prefixed With Target](#bp-funcs-naming-rpcs)
-    - [3.3.2 All Functions Must Have Return Nodes](#bp-funcs-return)
+    - [3.3.2 Tutte le Functions devono avere Return Nodes](#bp-funcs-return)
     - [3.3.3 Nessuna Function dovrebbe avere più di 50 Nodes](#bp-graphs-funcs-node-limit)
-    - [3.3.4 All Public Functions Should Have A Description](#bp-graphs-funcs-description)
+    - [3.3.4 All Public Functions dovrebbero avere una descrizione](#bp-graphs-funcs-description)
     - [3.3.5 All Custom Static Plugin `BlueprintCallable` Functions Must Be Categorized By Plugin Name](#bp-graphs-funcs-plugin-category)
   - [3.4 Blueprint Graphs](#bp-graphs)
     - [3.4.1 No Spaghetti](#bp-graphs-spaghetti)
@@ -139,17 +139,17 @@ Al fine di facilitare l'indicizzazione e la fruibilità del documento ho preferi
     - [3.4.6 Graphs non dovrebbero avere nessun tipo di nodo  Dangling / Loose / Dead ](#bp-graphs-dangling-nodes)
 - [4. Static Meshes](#4)
   - [4.1 Static Mesh UVs](#s-uvs)
-    - [4.1.1 All Meshes Must Have UVs](#s-uvs-no-missing)
-    - [4.1.2 All Meshes Must Not Have Overlapping UVs for Lightmaps](#s-uvs-no-overlapping)
+    - [4.1.1 Tutte le Meshes devono avere UVs](#s-uvs-no-missing)
+    - [4.1.2 Tutte le Meshes non devono avere Overlapping UVs for Lightmaps](#s-uvs-no-overlapping)
   - [4.2 LODs Should Be Set Up Correctly](#s-lods)
-  - [4.3 Modular Socketless Assets Should Snap To The Grid Cleanly](#s-modular-snapping)
+  - [4.3 Gli assets Modular Socketless dovrebbero Snap To The Grid Cleanly](#s-modular-snapping)
   - [4.4 Tutte le Meshes devono avere collisione](#s-collision)
   - [4.5 Tutte le meshes devono essere in scala corretta](#s-scaled)
 - [5. Niagara](#Niagara)
   - [5.1 Mai usare la barra spaziatrice](#ng-rules)
 - [6. Levels / Maps](#levels)
   - [6.1 Mai errori o warnings](#levels-no-errors-or-warnings)
-  - [6.2 Lighting Should Be Built](#levels-lighting-should-be-built)
+  - [6.2 La lighting dovrebbe essere Built](#levels-lighting-should-be-built)
   - [6.3 No Player Visible Z Fighting](#levels-no-visible-z-fighting)
   - [6.4 Regole specifiche del Marketplace](#levels-mp-rules)
     - [6.4.1 Overview livello](#levels-mp-rules-overview)
@@ -191,13 +191,13 @@ There are a few different ways you can `CaseWordsWhenNaming`. Here are some comm
 <a name="terms-var-prop"></a>
 ##### Variables / Properties
 
-The words 'variable' and 'property' in most contexts are interchangable. If they are both used together in the same context however:
+The words 'variable' and 'property' nella maggior parte dei contesti sono intercambiabili. Tuttavia, se sono usate entrambe nello stesso contesto/frase:
 
 <a name="terms-property"></a>
 ###### Property
 In genere ci si riferisce a una variable definita in una class. Per esempio, se `BP_Barrel` had a variable `bExploded`, `bExploded` may be referred to come una proprietà di `BP_Barrel`.
 
-When in the context of a class, it is often used per implicare l'accesso a data definito precedentemente.
+When in the context of a class, é usato spesso per implicare l'accesso a data definito precedentemente.
 
 <a name="terms-variable"></a>
 ###### Variable
@@ -216,3 +216,13 @@ Questi principles sono stati adattati da [idomatic.js style guide](https://githu
 Se stai lavorando a un progetto da solo o con un team che ha già un manuale di stile pre-esistente, dovresti rispettarlo. Qualsiasi inconsistenza tra un manuale di stile già esistente questa guida e quella già presente cede, dando priorità al manuale di stile scelto dall'azienda.
 
 I manuali di stile dovrebbero essere documenti viventi. Dovresti proporre cambi ad esso e a questa guida se ritieni che attraverso il cambiamento tutti ne possano trarre vantaggio.
+
+> #### "Arguments over style non hanno senso. ci dovrebbe essere soltanto una style guide, e tu la devi seguire."
+> [_Rebecca Murphey_](https://rmurphey.com)
+
+<a name="0.2"></a>
+### 0.2 Tutte le structure, assets, e codice in qualsiasi progetto Unreal Engine 4 devono apparire come se una singola persona li abbia creati, a prescindere da quante persone abbiano contribuito
+
+Moving from one project to another should not cause a re-learning of stile e struttura. Conforming to a style guide rimuove unneeded guesswork e ambiguità.
+
+It also allows for more productive creation and manutenzione perché nessuno deve spendere ulteriore tempo sullo stile. Semplicemente segui le istruzioni. Questo manuale di stile  guide é stato stilato tenendo conto delle best practices, con il vantaggio che se segui questa style guide renderai più semplice risolvere problemi difficili da rintracciare.
