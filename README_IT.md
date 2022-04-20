@@ -37,7 +37,7 @@ Se hai fatto un fork degno di nota o una traduzione che non è adatta per una pu
 
 Nota della traduzione italiana: parla della scelta di quali termini tradurre e quali no per facilitare indicizzazione e fruibilità.
 
-Al fine di facilitare l'indicizzazione e la fruibilità del documento ho preferito mantenere in inglese i termini tecnici. L'idea è che questo documento sia tra i primi a cui uno sviluppatore poco avvezzo alla lingua inglese si affidi, esponendolo però immediatamente ai termini tecnici inglesi. La traduzione di questi termini è presente in Internet e vi invito a cercarle nel caso abbiate serie difficoltà a capire il documento; sappiate però che in un team di sviluppo o se avete bisogno di googlare risposte, le terminologie inglesi saranno NECESSARIE per ottenere dei risultati.
+Al fine di facilitare l'indicizzazione e la fruibilità del documento ho preferito mantenere in inglese i termini tecnici. L'idea è che questo documento sia tra i primi a cui uno sviluppatore poco avvezzo alla lingua inglese si affidi, esponendolo però immediatamente ai termini tecnici inglesi. La traduzione di questi termini se necessaria è presente in Internet e vi invito a cercarle nel caso abbiate serie difficoltà a capire il documento; sappiate però che in un team di sviluppo o se avete bisogno di googlare risposte, le terminologie inglesi saranno NECESSARIE per ottenere dei risultati.
 
 ## Indice
 - [Terminologia importante](#important-terminology)
