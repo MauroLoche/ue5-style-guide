@@ -226,3 +226,27 @@ I manuali di stile dovrebbero essere documenti viventi. Dovresti proporre cambi 
 Moving from one project to another should not cause a re-learning of stile e struttura. Conforming to a style guide rimuove unneeded guesswork e ambiguità.
 
 It also allows for more productive creation and manutenzione perché nessuno deve spendere ulteriore tempo sullo stile. Semplicemente segui le istruzioni. Questo manuale di stile  guide é stato stilato tenendo conto delle best practices, con il vantaggio che se segui questa style guide renderai più semplice risolvere problemi difficili da rintracciare.
+
+<a name="0.3"></a>
+### 0.3 I veri amici non permettono ai loro amici di usare uno stile incoerente
+
+Se noti qualcuno lavorare senza rispettare un manuale di stile o senza averne uno, cerca di mostrargli la retta via.
+
+Quando si lavora in un team o si discute in una community come quella degli [Unreal Slackers](http://join.unrealslackers.org/), é più facile aiutare e chiedere aiuto quando tutti sono coerenti nella forma. A nessuno piace srotolare il groviglio causato dai nodi dei blueprint di qualcun'altro o avere a chie fare on assets che hanno nomi che non hanno un criterio logico.
+
+Se stai aiutando qualcuno che sta usando un manuale di stile appropriato per il suo lavoro ma diverso dal tuo, sta a te adattarti.Se non hanno uno stanard di style guide, per favore indirizzali qui.
+
+<a name="0.4"></a>
+### 0.4 Un team senza un manuale di stile non è un team di cui voglio far parte
+
+When joining an Unreal Engine 4 team, one of your first questions should be "Do you have a style guide?". If the answer is no, you should be skeptical about their ability to work as a team.
+
+<a name="0.5"></a>
+### 0.5 Non infrangere la legge
+
+Gamemakin LLC non è un avvocato, ma per favore evita di compiere azioni e behavior illegali al progetto, includendo ma non limitato a:
+
+* Non distribuire content di cui non possiedi diritti di distribuzione
+* Non infriengere il diritto di copia altrui, nemmeno nei materiali con trademark
+* Non rubare content
+* Rispetta le restrizioni di licenza del content, i.e. attribuisci dove l'attribuzione é richiesta
