@@ -257,23 +257,52 @@ Gamemakin LLC non è un avvocato, ma per favore evita di compiere azioni e behav
 @TODO: Make this section 1 and update this document accordingly. Or maybe we don't?
 
 <a name="00.1"></a>
-### 00.1 Forbidden Characters
+### 00.1 Caratteri vietati
 
 <a name="identifiers-1"></a>
 #### Identifiers
 
-In any `Identifier` of any kind, **never** use the following unless absolutely forced to:
+In ogni `Identifier` di ogni tipo, non usare **mai** i seguenti a meno che tu non sia forzato:
 
 * White space of any kind
 * Backward slashes `\`
-* Symbols i.e. `#!@$%`
-* Any Unicode character
+* Simboli i.e. `#!@$%`
+* Qualsiasi carattere Unicode
 
-Any `Identifier` should strive to only have the following characters when possible (the RegEx `[A-Za-z0-9_]+`)
+Qualsiasi `Identifier` dovrebbe avere solo i seguenti caratteri quando possibile (the RegEx `[A-Za-z0-9_]+`)
 
 * ABCDEFGHIJKLMNOPQRSTUVWXYZ
 * abcdefghijklmnopqrstuvwxyz
 * 1234567890
-* _ (sparingly)
+* _ (raramente)
 
-The reasoning for this is this will ensure the greatest compatibility of all data across all platforms across all tools, and help prevent downtime due to potentially bad character handling for identifiers in code you don't control.
+Il ragionamento dietro ciò é che questo assicura la maggior compatibilità di tutti i data tra le piattaforme attraverso tutti i tool, e di conseguenza aiuta a prevenire downtime causati da bad character handling per identifiers in codice dove tu non hai controllo.
+
+<a name="anc"></a>
+<a name="1"></a>
+## 1. Asset Naming Conventions
+
+Naming conventions devono essere trattate come legge. Un progetto che rispetta una naming convention é in grado di avere i propri assets managed, searched, parsed, and maintained con incredibile faciità.
+
+La maggior parte delle cose sono prefissate seguendo una logica dove il prefisso é un acronimo del tipo di asset susseguito da un underscore.
+
+<a name="base-asset-name"></a>
+<a name="1.1"></a>
+### 1.1 Base Asset Name - `Prefix_BaseAssetName_Variant_Suffix`
+
+Tutti gli assets dovrebbero avere un _Base Asset Name_. Un Base Asset Name rappresenta un raggruppamento logico di related assets. Qualsiasi asset che fa parte di questo gruppo logico dovrebbe seguire lo standard di `Prefix_BaseAssetName_Variant_Suffix`.
+
+Rispettare il pattern `Prefix_BaseAssetName_Variant_Suffix`, tenerlo a mente e usare il buonsenso é genericamente abbastanza per garantire degli asset name buoni. Qui sotto trovi regole più dettagliate riguardanti ogni elemento.
+
+`Prefix` e `Suffix` si determinano dal tipo di asset attraverso le seguenti [Asset Name Modifier](#asset-name-modifiers) tabelle.
+
+`BaseAssetName` dovrebbe essere scelto attraverso un nome breve e facilmente riconoscibile riguardante il contesto di questo gruppo di assets. Per eempio, se hai un personaggio di nome Bob, tutti gli asset di Bob dovrebbero avere il `BaseAssetName` di `Bob`.
+
+Per uniche e specifiche variazioni di assets, `Variant` é un nome breve e facilmente riconoscibile che rappresenta raggruppamento logico di assets che sono un subset del nome base dell'asset principale. Per esempio, se Bob avesse varie skin, queste dovrebbero usare sempre `Bob` come `BaseAssetName` ma inoltre includere una riconoscibile `Variant`. Una skin 'da arcinemico' dovrebbe essere chiamata `Bob_Evil` e una skin con lo stile 'Retro' si dovrebbe chiamare `Bob_Retro`.
+
+Per variazioni di assets generiche ma uniche, `Variant` é un numero di due cifre che parte da `01`. Per esempio, se hai un environment artist che ha generato rocce nondescript, dovrebbero essere nominate `Rock_01`, `Rock_02`, `Rock_03`, etc. Ad eccezione di casi rarissimi, non dovresti mai aver bisogno di variant da tre cifre. Se hai più di 100 assets, dovresti tener in conto di riorganizzarle con base names diversi o usare un maggior numero di variant names.
+
+Depending on how your asset variants are made, you can chain together variant names. For example, if you are creating flooring assets for an Arch Viz project you should use the base name `Flooring` with chained variants such as `Flooring_Marble_01`, `Flooring_Maple_01`, `Flooring_Tile_Squares_01`.
+
+<a name="1.1-examples"></a>
+#### 1.1 Examples
