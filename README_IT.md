@@ -250,3 +250,30 @@ Gamemakin LLC non è un avvocato, ma per favore evita di compiere azioni e behav
 * Non infriengere il diritto di copia altrui, nemmeno nei materiali con trademark
 * Non rubare content
 * Rispetta le restrizioni di licenza del content, i.e. attribuisci dove l'attribuzione é richiesta
+
+<a name="00"></a>
+## 00. Globally Enforced Opinions
+
+@TODO: Make this section 1 and update this document accordingly. Or maybe we don't?
+
+<a name="00.1"></a>
+### 00.1 Forbidden Characters
+
+<a name="identifiers-1"></a>
+#### Identifiers
+
+In any `Identifier` of any kind, **never** use the following unless absolutely forced to:
+
+* White space of any kind
+* Backward slashes `\`
+* Symbols i.e. `#!@$%`
+* Any Unicode character
+
+Any `Identifier` should strive to only have the following characters when possible (the RegEx `[A-Za-z0-9_]+`)
+
+* ABCDEFGHIJKLMNOPQRSTUVWXYZ
+* abcdefghijklmnopqrstuvwxyz
+* 1234567890
+* _ (sparingly)
+
+The reasoning for this is this will ensure the greatest compatibility of all data across all platforms across all tools, and help prevent downtime due to potentially bad character handling for identifiers in code you don't control.
