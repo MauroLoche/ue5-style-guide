@@ -387,7 +387,7 @@ Quando dai il nome a un asset, usa queste tabelle per determinare il prefisso e 
 | Service                 | BTService_ |            |                                  |
 | Task                    | BTTask_    |            |                                  |
 | Environment Query       | EQS_       |            |                                  |
-| EnvQueryContext         | EQS_       | Context    |                                  |
+| EnvQueryContext         | EQS_       | Contesto    |                                  |
 
 <a name="anc-bp"></a>
 <a name="1.2.4"></a>
