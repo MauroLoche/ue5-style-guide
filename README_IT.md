@@ -337,7 +337,7 @@ Quando dai il nome a un asset, usa queste tabelle per determinare il prefisso e 
 <a name="1.2.1"></a>
 #### 1.2.1 Most Common
 
-| Tipo di asset              | Prefix     | Suffix     | Notes                            |
+| Tipo di asset              | Prefix     | Suffisso     | Notes                            |
 | ----------------------- | ---------- | ---------- | -------------------------------- |
 | Level / Map             |            |            | [Should be in a folder called Maps.](#2.4) |
 | Level (Persistent)      |            | _P         |                                  |
@@ -357,7 +357,7 @@ Quando dai il nome a un asset, usa queste tabelle per determinare il prefisso e 
 <a name="1.2.2"></a>
 #### 1.2.2 Animations
 
-| Tipo di asset              | Prefix     | Suffix     | Notes                            |
+| Tipo di asset              | Prefix     | Suffisso     | Notes                            |
 | ----------------------- | ---------- | ---------- | -------------------------------- |
 | Aim Offset              | AO_        |            |                                  |
 | Aim Offset 1D           | AO_        |            |                                  |
@@ -393,7 +393,7 @@ Quando dai il nome a un asset, usa queste tabelle per determinare il prefisso e 
 <a name="1.2.4"></a>
 ### 1.2.4 Blueprints
 
-| Tipo di asset              | Prefix     | Suffix     | Notes                            |
+| Tipo di asset              | Prefisso     | Suffisso     | Notes                            |
 | ----------------------- | ---------- | ---------- | -------------------------------- |
 | Blueprint               | BP_        |            |                                  |
 | Blueprint Component     | BP_        | Component  | I.e. BP_InventoryComponent       |
@@ -409,7 +409,7 @@ Quando dai il nome a un asset, usa queste tabelle per determinare il prefisso e 
 <a name="1.2.5"></a>
 ### 1.2.5 Materials
 
-| Tipo di asset                    | Prefix     | Suffix     | Notes                            |
+| Tipo di asset                    | Prefisso     | Suffisso     | Notes                            |
 | ----------------------------- | ---------- | ---------- | -------------------------------- |
 | Material                      | M_         |            |                                  |
 | Material (Post Process)       | PP_        |            |                                  |
@@ -424,7 +424,7 @@ Quando dai il nome a un asset, usa queste tabelle per determinare il prefisso e 
 <a name="1.2.6"></a>
 ### 1.2.6 Textures
 
-| Tipo di asset              | Prefix     | Suffix     | Notes                            |
+| Tipo di asset              | Prefisso     | Suffisso     | Notes                            |
 | ----------------------- | ---------- | ---------- | -------------------------------- |
 | Texture                 | T_         |            |                                  |
 | Texture (Diffuse/Albedo/Base Color)| T_ | _D      |                                  |
@@ -457,7 +457,7 @@ Unire/ fare Packing 4 channels di data in una texture (RGBA) non é raccomandato
 <a name="1.2.7"></a>
 ### 1.2.7 Miscellaneous
 
-| Tipo di asset                 | Prefix     | Suffix     | Notes                            |
+| Tipo di asset                 | Prefisso     | Suffisso     | Note                            |
 | -------------------------- | ---------- | ---------- | -------------------------------- |
 | Animated Vector Field      | VFA_       |            |                                  |
 | Camera Anim                | CA_        |            |                                  |
@@ -486,7 +486,7 @@ Unire/ fare Packing 4 channels di data in una texture (RGBA) non é raccomandato
 <a name="1.2.8"></a>
 ### 1.2.8 Paper 2D
 
-| Tipo di asset              | Prefix     | Suffix     | Notes                            |
+| Tipo di asset              | Prefisso     | Suffisso     | Note                            |
 | ----------------------- | ---------- | ---------- | -------------------------------- |
 | Paper Flipbook          | PFB_       |            |                                  |
 | Sprite                  | SPR_       |            |                                  |
@@ -498,7 +498,7 @@ Unire/ fare Packing 4 channels di data in una texture (RGBA) non é raccomandato
 <a name="1.2.9"></a>
 ### 1.2.9 Physics
 
-| Tipo di asset              | Prefix     | Suffix     | Notes                            |
+| Tipo di asset              | Prefisso     | Suffisso     | Note                            |
 | ----------------------- | ---------- | ---------- | -------------------------------- |
 | Physical Material       | PM_        |            |                                  |
 | Physics Asset           | PHYS_      |            |                                  |
@@ -508,7 +508,7 @@ Unire/ fare Packing 4 channels di data in una texture (RGBA) non é raccomandato
 <a name="1.2.10"></a>
 ### 1.2.10 Sounds
 
-| Tipo di asset              | Prefix     | Suffix     | Notes                            |
+| Tipo di asset              | Prefisso     | Suffisso     | Note                            |
 | ----------------------- | ---------- | ---------- | -------------------------------- |
 | Dialogue Voice          | DV_        |            |                                  |
 | Dialogue Wave           | DW_        |            |                                  |
@@ -525,7 +525,7 @@ Unire/ fare Packing 4 channels di data in una texture (RGBA) non é raccomandato
 <a name="1.2.11"></a>
 ### 1.2.11 User Interface
 
-| Tipo di asset              | Prefix     | Suffix     | Notes                            |
+| Tipo di asset              | Prefisso     | Suffisso     | Note                            |
 | ----------------------- | ---------- | ---------- | -------------------------------- |
 | Font                    | Font_      |            |                                  |
 | Slate Brush             | Brush_     |            |                                  |
@@ -536,7 +536,7 @@ Unire/ fare Packing 4 channels di data in una texture (RGBA) non é raccomandato
 <a name="1.2.12"></a>
 ### 1.2.12 Effects
 
-| Tipo di asset              | Prefix     | Suffix     | Notes                            |
+| Tipo di asset              | Prefisso     | Suffisso     | Note                            |
 | ----------------------- | ---------- | ---------- | -------------------------------- |
 | Particle System         | PS_        |            |                                  |
 | Material (Post Process) | PP_        |            |                                  |
