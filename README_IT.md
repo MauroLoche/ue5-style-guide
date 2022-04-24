@@ -463,7 +463,7 @@ Unire/ fare Packing 4 channels di data in una texture (RGBA) non é raccomandato
 | Camera Anim                | CA_        |            |                                  |
 | Color Curve                | Curve_     | _Color     |                                  |
 | Curve Table                | Curve_     | _Table     |                                  |
-| Data Asset                 | *_         |            | Prefix should be based on class. |
+| Data Asset                 | *_         |            | Il prefisso dovrebbe essere basato sulla class. |
 | Data Table                 | DT_        |            |                                  |
 | Float Curve                | Curve_     | _Float     |                                  |
 | Foliage Type               | FT_        |            |                                  |
@@ -474,7 +474,7 @@ Unire/ fare Packing 4 channels di data in una texture (RGBA) non é raccomandato
 | Media Player               | MP_        |            |                                  |
 | File Media Source          | FMS_       |            |                                  |
 | Object Library             | OL_        |            |                                  |
-| Redirector                 |            |            | These should be fixed up ASAP.   |
+| Redirector                 |            |            | Devono essere risolti IL PRIMA POSSIBILE.   |
 | Sprite Sheet               | SS_        |            |                                  |
 | Static Vector Field        | VF_        |            |                                  |
 | Substance Graph Instance   | SGI_       |            |                                  |
@@ -516,7 +516,7 @@ Unire/ fare Packing 4 channels di data in una texture (RGBA) non é raccomandato
 | Reverb Effect           | Reverb_    |            |                                  |
 | Sound Attenuation       | ATT_       |            |                                  |
 | Sound Class             |            |            | Nessun prefisso nè suffisso. Dovrebbe essere posto in una catella chiamata SoundClasses |
-| Sound Concurrency       |            | _SC        | Should be named after a SoundClass |
+| Sound Concurrency       |            | _SC        | Il nome dovrebbe essere derivante di quello della sua SoundClass |
 | Sound Cue               | A_         | _Cue       |                                  |
 | Sound Mix               | Mix_       |            |                                  |
 | Sound Wave              | A_         |            |                                  |
@@ -540,3 +540,94 @@ Unire/ fare Packing 4 channels di data in una texture (RGBA) non é raccomandato
 | ----------------------- | ---------- | ---------- | -------------------------------- |
 | Particle System         | PS_        |            |                                  |
 | Material (Post Process) | PP_        |            |                                  |
+
+**[⬆ Back to Top](#table-of-contents)**
+
+<a name="2"></a>
+<a name="structure"></a>
+## 2. Content Directory Structure
+
+Importanti tanto quanto i nomi degli asset, lo stile della directory di un progetto dovrebbe essere legge. Convenzioni sulla nominazione degli asset e struttura content directory structure vanno mano a mano, e la violazione di anche sola una di esse crea caos evitabile.
+
+Esistono vari modi per organizzare il content di un progetto UE4. In questo stile useremo una struttura che si affida maggiormente al filtering e all'abilità di ricerca del Content Browser per aiutare chiunque lavori con asset a trovare asset di un tipo specifico al posto di un'altra common structure che raggruppa asset types in cartelle.
+
+> Se stai usando il prefisso [naming convention](#1.2) qua sopra indicato, usare cartelle per contenere asset di tipologia simile quali `Meshes`, `Textures`, e `Materials` é una pratica ridondante perchè gli asset types sono già organizzati per prefisso e inoltre filtrati nel content browser.
+
+<a name="2e1"><a>
+### 2e1 Example Project Content Structure
+<pre>
+|-- Content
+    |-- <a href="#2.2">GenericShooter</a>
+        |-- Art
+        |   |-- Industrial
+        |   |   |-- Ambient
+        |   |   |-- Machinery
+        |   |   |-- Pipes
+        |   |-- Nature
+        |   |   |-- Ambient
+        |   |   |-- Foliage
+        |   |   |-- Rocks
+        |   |   |-- Trees
+        |   |-- Office
+        |-- Characters
+        |   |-- Bob
+        |   |-- Common
+        |   |   |-- <a href="#2.7">Animations</a>
+        |   |   |-- Audio
+        |   |-- Jack
+        |   |-- Steve
+        |   |-- <a href="#2.1.3">Zoe</a>
+        |-- <a href="#2.5">Core</a>
+        |   |-- Characters
+        |   |-- Engine
+        |   |-- <a href="#2.1.2">GameModes</a>
+        |   |-- Interactables
+        |   |-- Pickups
+        |   |-- Weapons
+        |-- Effects
+        |   |-- Electrical
+        |   |-- Fire
+        |   |-- Weather
+        |-- <a href="#2.4">Maps</a>
+        |   |-- Campaign1
+        |   |-- Campaign2
+        |-- <a href="#2.8">MaterialLibrary</a>
+        |   |-- Debug
+        |   |-- Metal
+        |   |-- Paint
+        |   |-- Utility
+        |   |-- Weathering
+        |-- Placeables
+        |   |-- Pickups
+        |-- Weapons
+            |-- Common
+            |-- Pistols
+            |   |-- DesertEagle
+            |   |-- RocketPistol
+            |-- Rifles
+</pre>
+
+I motivi per cui usare questa struttura sono elencati nelle seguenti sottosezioni.
+
+<a name="2.1"></a>
+<a name="structure-folder-names"><a>
+### 2.1 Folder Names
+
+These are common rules for naming any folder in the content structure.
+
+<a name="2.1.1"></a>
+#### 2.1.1 Always Use PascalCase[<sup>*</sup>](#terms-cases)
+
+PascalCase refers to starting a name with a capital letter and then instead of using spaces, every following word also starts with a capital letter. For example, `DesertEagle`, `RocketPistol`, and `ASeriesOfWords`.
+
+See [Cases](#terms-cases).
+
+<a name="2.1.2"></a>
+#### 2.1.2 Never Use Spaces
+
+Re-enforcing [2.1.1](#2.1.1), never use spaces. Spaces can cause various engineering tools and batch processes to fail. Ideally, your project's root also contains no spaces and is located somewhere such as `D:\Project` instead of `C:\Users\My Name\My Documents\Unreal Projects`.
+
+<a name="2.1.3"></a>
+#### 2.1.3 Never Use Unicode Characters And Other Symbols
+
+If one of your game characters is named 'Zoë', its folder name should be `Zoe`. Unicode characters can be worse than [Spaces](#2.1.2) for engineering tool and some parts of UE4 don't support Unicode characters in paths either.
