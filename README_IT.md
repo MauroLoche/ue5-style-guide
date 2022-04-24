@@ -515,7 +515,7 @@ Unire/ fare Packing 4 channels di data in una texture (RGBA) non é raccomandato
 | Media Sound Wave        | MSW_       |            |                                  |
 | Reverb Effect           | Reverb_    |            |                                  |
 | Sound Attenuation       | ATT_       |            |                                  |
-| Sound Class             |            |            | No prefix/suffix. Should be put in a folder called SoundClasses |
+| Sound Class             |            |            | Nessun prefisso nè suffisso. Dovrebbe essere posto in una catella chiamata SoundClasses |
 | Sound Concurrency       |            | _SC        | Should be named after a SoundClass |
 | Sound Cue               | A_         | _Cue       |                                  |
 | Sound Mix               | Mix_       |            |                                  |
