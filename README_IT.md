@@ -378,7 +378,7 @@ Quando dai il nome a un asset, usa queste tabelle per determinare il prefisso e 
 <a name="1.2.3"></a>
 ### 1.2.3 Artificial Intelligence
 
-| Asset Type              | Prefix     | Suffix     | Notes                            |
+| Asset Type              | Prefisso     | Suffisso     | Notes                            |
 | ----------------------- | ---------- | ---------- | -------------------------------- |
 | AI Controller           | AIC_       |            |                                  |
 | Behavior Tree           | BT_        |            |                                  |
