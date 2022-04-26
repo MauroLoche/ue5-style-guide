@@ -613,21 +613,53 @@ I motivi per cui usare questa struttura sono elencati nelle seguenti sottosezion
 <a name="structure-folder-names"><a>
 ### 2.1 Folder Names
 
-These are common rules for naming any folder in the content structure.
+Queste sono regole comuni per nominare ogni cartella nella content structure.
 
 <a name="2.1.1"></a>
-#### 2.1.1 Always Use PascalCase[<sup>*</sup>](#terms-cases)
+#### 2.1.1 Usa sempre PascalCase[<sup>*</sup>](#terms-cases)
 
-PascalCase refers to starting a name with a capital letter and then instead of using spaces, every following word also starts with a capital letter. For example, `DesertEagle`, `RocketPistol`, and `ASeriesOfWords`.
+PascalCase significa iniziare un nome con la prima lettera in maiuscolo, il rimanente della parola in minuscolo e poi ogni parola che segue al posto di essere staccata con lo spazio, si attacca alla prima maiuscolizzando la sua prima lettera . Per esempio, `DesertEagle`, `RocketPistol`, e `ASeriesOfWords`.
 
-See [Cases](#terms-cases).
+Leggi anche [Cases](#terms-cases).
 
 <a name="2.1.2"></a>
-#### 2.1.2 Never Use Spaces
+#### 2.1.2 Non usare mai la barra spaziatrice
 
-Re-enforcing [2.1.1](#2.1.1), never use spaces. Spaces can cause various engineering tools and batch processes to fail. Ideally, your project's root also contains no spaces and is located somewhere such as `D:\Project` instead of `C:\Users\My Name\My Documents\Unreal Projects`.
+Rafforzando il concetto espresso in [2.1.1](#2.1.1), non usare mai spazi. Essi possono creare vari problemi usando engineering tools e batch processes portandoli a fallire. Idealmente, il root del tuo progetto non ha spazi e si trova in `D:\Project` al posto di `C:\Users\My Name\My Documents\Unreal Projects`.
 
 <a name="2.1.3"></a>
-#### 2.1.3 Never Use Unicode Characters And Other Symbols
+#### 2.1.3 Non usare mai caratteri Unicode e altri symboli
 
-If one of your game characters is named 'Zoë', its folder name should be `Zoe`. Unicode characters can be worse than [Spaces](#2.1.2) for engineering tool and some parts of UE4 don't support Unicode characters in paths either.
+Se uno dei tuoi personaggi del gioco si chiama 'Zoë', il nome della sua cartella dovrebbe essee `Zoe`. Caratteri Unicode possono essere peggio dello [Spaces](#2.1.2) per engineering tool e alcune parti di UE4 non supportano caratteri Unicode nemmeno nei path.
+
+Riguardo ciò, se i tuo progetto ha [unexplained issues](https://answers.unrealengine.com/questions/101207/undefined.html) e il tuo user name del tuo computer ha un carattere Unicode (i.e. your name is `Zoë`), ogni progetto che si trova nella cartella `My Documents` avrà sempre questo problema. Spesso basta semplicemente spostare il tuo progetto in un path come `D:\Project` per risolvere questo problemi misteriosi.
+
+Usare altri caratteri ad eccezione di `a-z`, `A-Z`, e `0-9` come `@`, `-`, `_`, `,`, `*`, e `#` può portare a creare problemi difficili da tracciare in altre piattaforme, source control, and weaker engineering tools.
+
+<a name="2.2"></a>
+<a name="structure-top-level"><a>
+### 2.2 Usa una cartella Top Level per assets Project Specific
+
+Tutti gli asset di un progetto dovrebbero stare in una cartella chiamata col nome del progetto. Per esempio, se il tuo progetto si chiama 'Generic Shooter', _tutti_ i suoi contenuti dovrebbero stare in `Content/GenericShooter`.
+
+> La cartella `Developers` non  per asset che il tuo progetto usa per funzionare e quindi non sono project specific. Vedi anche [Developer Folders](#2.3) per ulteriori dettagli.
+
+Ci sono più motivi per questo approccioThere are multiple reasons for this approach.
+
+<a name="2.2.1"></a>
+#### 2.2.1 No assets per uso globale
+
+Spesso nei manuali di stile di codice viene insegnato che non bisogna sporcare il global namespace e pure questa quida segue questo stesso principio. Quando agli asset viene permesso di esistere fuori dalla cartella del progetto, diventa spesso più difficile far rispettare un layout con una struttura ben precisa poichè gli asset non presenti in una cartella incoraggiano il comportamento errato di non aver da organizzare asset.
+
+Ogni asset dovrebbe avere un suo scopo, o non appartiene al progetto. Se un asset è un test sperimentale e non dovrebbe essere usato dal progetto dovrebbe essere messo in una cartella [`Developer`](#2.3).
+
+<a name="2.2.2"></a>
+#### 2.2.2 Riduci i conflitti delle Migration
+
+Quando si lavora a più progetti contemporaneamente é normale per un team copiare asset da un proggetto all'altro se hanno sviluppato quancosa di utile per entrambi i progetti. Quando questo succede, la maniera più facile per fare la copia é usare la funzione Migrate del Content Browser che copierà non solo l'asset selezionato ma tutte le sue dependencies.
+
+Sono proprio queste dependencies che potrebbero dare rogne. Se gli asset di due progetti non hanno una top level folder e inoltre hanno asset con nomi simili o già precedentemente migrati, una nuova migrazione ha la probabile conseguenza di cancellare qualsiasi modifica degli asset già esistenti.
+
+È per questo motivo per cui lo staff del Marketplace della Epic fa rispettare la stessa polici per gli asset pubblicati.
+
+Dopo una migrazione, il safe merging degli asset può essere fatto usando lo strumento 'Replace References' nel content browser col beneficio della maggior chiarezza degli asset non appartenenti alla cartella top level del progetto sono visibilmente in pending per il merge. Una volta che gli asset hanno subito il merge e sono stati completamente migrati, non ci dovrebbe essere un'altra cartella top level nel tuo Content Tree. Questo metodo garantisce al _100%_ di rendere ogni migrazione assolutamente sicura.
