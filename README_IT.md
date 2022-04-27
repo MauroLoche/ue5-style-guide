@@ -732,15 +732,41 @@ For example, if your project requires pickups that can be placed in a level, the
 <a name="2.6.1"></a>
 #### 2.6.1 Creating a folder named `Assets` is redundant
 
-All assets are assets.
+Tutti gli asset sono asset.
 
 <a name="2.6.2"></a>
 #### 2.6.2 Creating a folder named `Meshes`, `Textures`, or `Materials` is redundant
 
-All asset names are named with their asset type in mind. These folders offer only redundant information and the use of these folders can easily be replaced with the robust and easy to use filtering system the Content Browser provides.
+Tutti i nomi degli assset sono decisi tenendo sempre conto del loro asset type. Queste cartelle offrono solo informazioni ridondanti e l'uso di esse può essere facilmente rimpiazzato dal robuto e facile all'uso filter system dato a disposizione dal Content Browsers.
 
-Want to view only static mesh in `Environment/Rocks/`? Simply turn on the Static Mesh filter. If all assets are named correctly, they will also be sorted in alphabetical order regardless of prefixes. Want to view both static meshes and skeletal meshes? Simply turn on both filters. This eliminates the need to potentially have to `Control-Click` select two folders in the Content Browser's tree view.
+Vuoi vedere solo le static mesh in `Environment/Rocks/`? Semplicemente attiva il filtro Shatic Mesh. Se tutti gli asset sono nominati correttamente, allora saranno organizzati in ordine alfabetico a prescindere dal prefisso. Vuoi vedere sia le static meshes e le skeletal meshes? Semplicemente attiva entrambi i filtri. Questo elimina la necessità di potenzialmente aver da fare `Control-Click` selezionare due cartelle nella tree view del Content Browser.
 
-> This also extends the full path name of an asset for very little benefit. The `S_` prefix for a static mesh is only two characters, whereas `Meshes/` is seven characters.
+> Questo discorso si estende anche al full path name di un asset per alcuni benefici. Il prefisso `S_` per una static mesh è composto da soli due caratteri, invece `Meshes/` sono ben sette caratteri.
 
-Not doing this also prevents the inevitability of someone putting a static mesh or a texture in a `Materials` folder.
+Non fare questo inoltre previene l'inevitabilità di qualcuno a mettere una static mesh o una texture nella cartella `Materials`.
+
+<a name="2.7"></a>
+<a name="structure-large-sets"></a>
+### 2.7 Very Large Asset Sets Get Their Own Folder Layout
+
+Questa può essre intesa come una pseudo-eccezione alla regola [2.6](#2.6).
+
+Esisono certi tipi di asset che hanno un numero alto di relativi file dove ogni asset ha un suo scopo unico. I due più comuni sono gli asset Animation e Audio. Se ti trovi con 15+ di questi asset che appartengono l'un l'altro, questi dovrebbero stare assieme.
+
+Per esempio, animazioni che sono condivise tra molteplici personaggi dovrebbero stare in `Characters/Common/Animations` e possono avere sottocartelle come `Locomotion` o `Cinematic`.
+
+> Ciò non si applica agli asset come textures e materials. È normale per una cartella `Rocks` avere un numero importante di texture se ci sono tante rocce, tuttavia queste texture sono generalmente solo relazionate a un paio di specifiche rocce e dovrebbero essere nominate in maniera opportuna. Pure se queste texture sono parte di una [Material Library](#2.8).
+
+<a name="2.8"></a>
+<a name="structure-material-library"></a>
+### 2.8 `MaterialLibrary`
+
+If your project makes use of master materials, layered materials, or any form of reusable materials or textures that do not belong to any subset of assets, these assets should be located in `Content/Project/MaterialLibrary`.
+
+This way all 'global' materials have a place to live and are easily located.
+
+> This also makes it incredibly easy to enforce a 'use material instances only' policy within a project. If all artists and assets should be using material instances, then the only regular material assets that should exist are within this folder. You can easily verify this by searching for base materials in any folder that isn't the `MaterialLibrary`.
+
+The `MaterialLibrary` doesn't have to consist of purely materials. Shared utility textures, material functions, and other things of this nature should be stored here as well within folders that designate their intended purpose. For example, generic noise textures should be located in `MaterialLibrary/Utility`.
+
+Any testing or debug materials should be within `MaterialLibrary/Debug`. This allows debug materials to be easily stripped from a project before shipping and makes it incredibly apparent if production assets are using them if reference errors are shown.
