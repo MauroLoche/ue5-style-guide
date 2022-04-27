@@ -704,3 +704,43 @@ Durante lo sviluppo di un progetto, è molto comune per membri del team avere un
 Se questi asset modulari fossero piazzati nella cartella Developer, il world builder non avrebbe mai scuse per usarli e questo problema non sarebbe mai successo. Il Content Browser ha una specifica View Options che nascondere le cartelle Developer (sono nascoste di default) rendendo impossibile l'uso accidentale di asset di Developer in circostanze normali.
 
 Una volta che questi asset sono pronti all'uso, una artista semplicemente deve spostare gli asset nella cartella specifica del progetto e fixare i redirectors. Fare ciò è 'promuovere' gli asset da sperimentali a produzione.
+
+<a name="2.4"></a>
+<a name="structure-maps"></a>
+### 2.4 All Map[<sup>*</sup>](#terms-level-map) Files Belong In A Folder Called Maps
+
+Map files are incredibly special and it is common for every project to have its own map naming system, especially if they work with sub-levels or streaming levels. No matter what system of map organization is in place for the specific project, all levels should belong in `/Content/Project/Maps`.
+
+Being able to tell someone to open a specific map without having to explain where it is is a great time saver and general 'quality of life' improvement. It is common for levels to be within sub-folders of `Maps`, such as `Maps/Campaign1/` or `Maps/Arenas`, but the most important thing here is that they all exist within `/Content/Project/Maps`.
+
+This also simplifies the job of cooking for engineers. Wrangling levels for a build process can be extremely frustrating if they have to dig through arbitrary folders for them. If a team's maps are all in one place, it is much harder to accidentally not cook a map in a build. It also simplifies lighting build scripts as well as QA processes.
+
+<a name="2.5"></a>
+<a name="structure-core"></a>
+### 2.5 Use A `Core` Folder For Critical Blueprints And Other Assets
+
+Use `/Content/Project/Core` folder for assets that are absolutely fundamental to a project's workings. For example, base `GameMode`, `Character`, `PlayerController`, `GameState`, `PlayerState`, and related Blueprints should live here.
+
+This creates a very clear "don't touch these" message for other team members. Non-engineers should have very little reason to enter the `Core` folder. Following good code structure style, designers should be making their gameplay tweaks in child classes that expose functionality. World builders should be using prefab Blueprints in designated folders instead of potentially abusing base classes.
+
+For example, if your project requires pickups that can be placed in a level, there should exist a base Pickup class in `Core/Pickups` that defines base behavior for a pickup. Specific pickups such as a Health or Ammo should exist in a folder such as `/Content/Project/Placeables/Pickups/`. Game designers can define and tweak pickups in this folder however they please, but they should not touch `Core/Pickups` as they may unintentionally break pickups project-wide.
+
+<a name="2.6"></a>
+<a name="structure-assettypes"></a>
+### 2.6 Do Not Create Folders Called `Assets` or `AssetTypes`
+
+<a name="2.6.1"></a>
+#### 2.6.1 Creating a folder named `Assets` is redundant
+
+All assets are assets.
+
+<a name="2.6.2"></a>
+#### 2.6.2 Creating a folder named `Meshes`, `Textures`, or `Materials` is redundant
+
+All asset names are named with their asset type in mind. These folders offer only redundant information and the use of these folders can easily be replaced with the robust and easy to use filtering system the Content Browser provides.
+
+Want to view only static mesh in `Environment/Rocks/`? Simply turn on the Static Mesh filter. If all assets are named correctly, they will also be sorted in alphabetical order regardless of prefixes. Want to view both static meshes and skeletal meshes? Simply turn on both filters. This eliminates the need to potentially have to `Control-Click` select two folders in the Content Browser's tree view.
+
+> This also extends the full path name of an asset for very little benefit. The `S_` prefix for a static mesh is only two characters, whereas `Meshes/` is seven characters.
+
+Not doing this also prevents the inevitability of someone putting a static mesh or a texture in a `Materials` folder.
