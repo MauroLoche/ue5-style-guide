@@ -663,3 +663,44 @@ Sono proprio queste dependencies che potrebbero dare rogne. Se gli asset di due 
 È per questo motivo per cui lo staff del Marketplace della Epic fa rispettare la stessa polici per gli asset pubblicati.
 
 Dopo una migrazione, il safe merging degli asset può essere fatto usando lo strumento 'Replace References' nel content browser col beneficio della maggior chiarezza degli asset non appartenenti alla cartella top level del progetto sono visibilmente in pending per il merge. Una volta che gli asset hanno subito il merge e sono stati completamente migrati, non ci dovrebbe essere un'altra cartella top level nel tuo Content Tree. Questo metodo garantisce al _100%_ di rendere ogni migrazione assolutamente sicura.
+
+<a name="2.2.2e1"></a>
+##### 2.2.2e1 Master Material Example
+
+Per esempio, ipotizziamo che hai creato un master material in un progetto e vorresti usarlo in un altro progetto quindi sposto quell'asset. Se questo aset non é in una cartella top level, potrebbe avere un nome come `Content/MaterialLibrary/M_Master`. Se il progetto ricevente non ha un master materialm dovrebbe funzionare tutto senza problemi.
+
+Nel mentre che il lavoro procede in uno o entrambi i progetti, i loro rispettivi master material possono cambiare per essere aggiustati per i loro progetti specifici a causa del progresso normale di sviluppo.
+
+Il problema sorge quando, per esempio, un artista per un progetto crea un buon set generico e modilare di static meshes e qualcuno vuole includere quel set di static meshes nel secondo progetto. Se l'artista che ha creato l'asset ha usato material instances basate su `Content/MaterialLibrary/M_Master` come gli é stato imposto, quando una migrazione viene fatta c'é una forte chanse di conflitti per gli asset `Content/MaterialLibrary/M_Master` già presenti.
+
+Questo problema può essere difficile da predire e a cui dare la colpa. La persona che ha migrato le static meshes può non essere la stessa persona che è familiare con lo sviluppo del master material di entrambi i progetti, e potrebbero nemmeno essere a conoscenza che le static meshes in questione si appoggiano a material instances che poi si appoggiano al master material. Il Migrate tool richiede che tutta la catena di dependencies funzioni e quindi sarà forzata a acchiappare  `Content/MaterialLibrary/M_Master` quando copia questi asset allaltro progetto e sovrascriverà gli asset già esistenti.
+
+
+È a questo punto che se i master material per entrambi i progetti sono incompatibili in _qualsiasi maniera_, rischi di rompere l'intera material librari di un progetto e ogni dependencies che sono ormai già state migrate, semplicemente perchè gli asset non erano piazzati in una cartella top level. La semplice migrazione di static meshes ora diventa un incubo.
+
+<a name="2.2.3"></a>
+#### 2.2.3 Samples, Templates, and Marketplace Content Are Risk-Free
+
+
+Una aggiunta a [2.2.2](#2.2.2), se un membro del team decide di aggiungere sample content, template files, o assets che hanno comprato dal  marketplace, è garantito, sino a quando la cartella top-level del tuo progetto è nominata in maniera unica, che questi nuovi asset non creeranno interferenze col tuo progetto.
+
+Non puoi fidarti che il contenuto del marketplace sia perfettamente conforme alla [top level folder rule](#2.2).  Esistono tanti asset che pongono la maggior parte del loro contenuto in una cartella top level ma hanno possibilità di contenere sample content della Epic modificato e/o level files che inquinano la cartella globale `Content`.
+
+Quando When adhering to [2.2](#2.2), il peggior conflitto del marketplace che puoi avere è se due assets del marketplace hanno entrambi lo stesso Epic sample content. Se tutti i tuoi asset sono in una cartella specifica del progetto, includendo pure il sample content che puoi aver messo nella tua cartella il tuo progetto non si romperà mai.
+
+<a name="2.2.4"></a>
+#### 2.2.4 DLC, Sub-Projects, and Patches Are Easily Maintained
+
+Se il tuo progetto prevede di rilasciare DLC o ha tante sottocartelle associate con esso che possono essere migrate via o semplicemente non cooked in una build, gli asset che si allacciano a questo progetto dovrebbero avere la loro cartella top level. Questo rende cooking DLC un atto separato dal progetto principale molto più facile. Sub-projects possono inoltre essere migrati dentro e fuori col minimo sforzo. Se hai bisogno di cambiare un materiale di un asset o aggiungere un asset override behaviour molto specifico in una patch, puoi facilmente applicare questi cambiamenti in una cartella patch e lavorare in sicurezza senza la chance di rompere il progetto core.
+
+<a name="2.3"></a>
+<a name="structure-developers"></a>
+### 2.3 Use Developers Folder For Local Testing
+
+Durante lo sviluppo di un progetto, è molto comune per membri del team avere una sorta di 'sandbox' dove possono sperimentare liberamente senza mettere a rischio il core project. Siccome questo lavoro può essere in corso, questi membri del team sarebbe meglio se mettessero i loro asset in un project's source control server. Non tutti i team hanno bisogno delle cartelle Developer, ma chi le usa spesso incorrono nel problema di avere assets.
+
+È molto facile per un membro del team usare asset che non sono pronti all'uso, che causerà problemi quando questi saranno rimossi. Per eempio, un artista potrebbe iterating in un set modulare di static meshes e lavorarci sopra impostando il loro sizing e grid snapping in maniera corretta. Se un world builder vede questi asset nella cartella principale del progetto, potrebbero usarli in un livello senza sapere che questi potrebbero essere sottoposti a cambi incredibili e/o rimozione. Ciò causa quantità immense di re-working per tutti i membri del team da risolvere.
+
+Se questi asset modulari fossero piazzati nella cartella Developer, il world builder non avrebbe mai scuse per usarli e questo problema non sarebbe mai successo. Il Content Browser ha una specifica View Options che nascondere le cartelle Developer (sono nascoste di default) rendendo impossibile l'uso accidentale di asset di Developer in circostanze normali.
+
+Una volta che questi asset sono pronti all'uso, una artista semplicemente deve spostare gli asset nella cartella specifica del progetto e fixare i redirectors. Fare ciò è 'promuovere' gli asset da sperimentali a produzione.
