@@ -761,12 +761,12 @@ Per esempio, animazioni che sono condivise tra molteplici personaggi dovrebbero 
 <a name="structure-material-library"></a>
 ### 2.8 `MaterialLibrary`
 
-If your project makes use of master materials, layered materials, or any form of reusable materials or textures that do not belong to any subset of assets, these assets should be located in `Content/Project/MaterialLibrary`.
+Se il tuo progetto fa uso di master materials, layered materials, o ogni forma di reusable materials o textures che non appartengono a nessun any subset di assets, questi asset devonon essere piazzati in `Content/Project/MaterialLibrary`.
 
-This way all 'global' materials have a place to live and are easily located.
+In questa maniera tutti i materials 'global' hanno un posto dove stare e sono facilmente piazzati.
 
-> This also makes it incredibly easy to enforce a 'use material instances only' policy within a project. If all artists and assets should be using material instances, then the only regular material assets that should exist are within this folder. You can easily verify this by searching for base materials in any folder that isn't the `MaterialLibrary`.
+> Ciò rende inoltre incredibilmente facile rafforzare una policy di 'use material instances only' all'interno di un progetto. Se tutti gli artisti e asset dovrebbero usare material instances, allora i soli regular material assets che dovrebbero esistere esistono solo dentro questa cartella. Puoi verificare facilmente questo cercando per base materials in ogni cartella che non è `MaterialLibrary`.
 
-The `MaterialLibrary` doesn't have to consist of purely materials. Shared utility textures, material functions, and other things of this nature should be stored here as well within folders that designate their intended purpose. For example, generic noise textures should be located in `MaterialLibrary/Utility`.
+La `MaterialLibrary` non deve per forza contenere solo materials. Shared utility textures, material functions, e altre cose di simile natura dovrebbero essere conservate qui e inoltre dentro cartelle che indicano il loro scopo. Per esempio, generic noise textures dovrebbero essere piazzate in `MaterialLibrary/Utility`.
 
-Any testing or debug materials should be within `MaterialLibrary/Debug`. This allows debug materials to be easily stripped from a project before shipping and makes it incredibly apparent if production assets are using them if reference errors are shown.
+Qualsiasi testing o debug materials dovrebbe stare all'interno dei confini di `MaterialLibrary/Debug`. Ciò permette debug materials di essere facilmente stripped da un progetto prima dello shipping e rende in maniera incredibilmente apparente se dei production assets li lstanno usando are using them se reference errors sono mostrati.
