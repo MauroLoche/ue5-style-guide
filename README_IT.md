@@ -770,3 +770,22 @@ In questa maniera tutti i materials 'global' hanno un posto dove stare e sono fa
 La `MaterialLibrary` non deve per forza contenere solo materials. Shared utility textures, material functions, e altre cose di simile natura dovrebbero essere conservate qui e inoltre dentro cartelle che indicano il loro scopo. Per esempio, generic noise textures dovrebbero essere piazzate in `MaterialLibrary/Utility`.
 
 Qualsiasi testing o debug materials dovrebbe stare all'interno dei confini di `MaterialLibrary/Debug`. Ciò permette debug materials di essere facilmente stripped da un progetto prima dello shipping e rende in maniera incredibilmente apparente se dei production assets li lstanno usando are using them se reference errors sono mostrati.
+
+<a name="2.9"></a>
+<a name="structure-no-empty-folders"></a>
+### 2.9 No Empty Folders
+
+In pratica, non dovrebbero esserci mai cartelle vuote. Creano disordine nel Content Browser.
+
+Se noti che il content Browser ha una cartella vuota che non puoi cancellare, dovresti provare le seguenti soluzioni:
+1. Sii sicuro che stai usando source control.
+1. Immediatamente avvia Fix Up Redirectors nel tuo progetto.
+1. Arriva alla cartella on-disk e cancella gli asset presenti dentro.
+1. Chiudi l'editor.
+1. Assicurati che il tuo source control state sia in sync (i.e. se usi Perforce, avvia un Reconcile Offline Work nella tua content directory)
+1. Apri l'editor. Conferma che tutto funzioni come ci si aspetti. Se non, fai revert, trova l'errore e riprova.
+1. Assicurati che la cartella sia sparita.
+1. Fai Submit changes al source control.
+
+**[⬆ Back to Top](#table-of-contents)**
+
