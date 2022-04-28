@@ -789,3 +789,116 @@ Se noti che il content Browser ha una cartella vuota che non puoi cancellare, do
 
 **[⬆ Back to Top](#table-of-contents)**
 
+
+<a name="3"></a>
+<a name="bp"></a>
+## 3. Blueprints
+
+Questa sezione si concentra sulle Blueprint classes e i loro meccanismi interni. Quando possibile,il manuale di stile rispetta il [Epic's Coding Standard](https://docs.unrealengine.com/latest/INT/Programming/Development/CodingStandard).
+
+Ricorda: Blueprinting badly bears blunders, beware! (Phrase by [KorkuVeren](http://github.com/KorkuVeren))
+
+<a name="3.1"></a>
+<a name="bp-compiling"></a>
+### 3.1 Compiling
+
+Tutti i blueprint dovrebbero compilare senza avvisi e/o errori. Dovresti fixare warnings e errors immediatamente poichè possono molto velocemente creare comportamenti inaspettati.
+
+*Non* mandare in submit blueprint rotti al source control. Se devi conservarli nel source control, considera invece mandarli in shelve.
+
+Blueprint rotti possono causare problemi che si manifestano in altre maniere, come broken references, unexpected behavior, cooking failures, e frequenti recompilation non necessarie. Un blueprint rotto ha la capacità di rompere tutto il tuo gioco.
+
+<a name="3.2"></a>
+<a name="bp-vars"></a>
+### 3.2 Variables
+
+Le parole `variable` e `property` possono entrambe essere usate per indicare lo stesso concetto.
+
+<a name="3.2.1"></a>
+<a name="bp-var-naming"></a>
+#### 3.2.1 Naming
+
+<a name="3.2.1.1"></a>
+<a name="bp-var-naming-nouns"></a>
+##### 3.2.1.1 Nouns
+
+Tutti i nomi delle non-boolean variable devono essere sostantivi chiari, non ambigui, e descrittivi.
+
+<a name="3.2.1.2"></a>
+<a name="bp-var-naming-case"></a>
+##### 3.2.1.2 PascalCase
+
+Tutte le non-boolean variables dovrebbero essere nella forma [PascalCase](#terms-cases).
+
+<a name="3.2.1.2e"></a>
+###### 3.2.1.2e Esempi
+
+* `Score`
+* `Kills`
+* `TargetPlayer`
+* `Range`
+* `CrosshairColor`
+* `AbilityID`
+
+<a name="3.2.1.3"></a>
+<a name="bp-var-bool-prefix"></a>
+##### 3.2.1.3 Boolean `b` Prefix
+
+Tutti i booleans dovrebbero essere nominati in PascalCase ma prefissati con una `b` minuscola.
+
+Esempi: Usa `bDead` e `bEvil`, **non** `Dead` e `Evil`.
+
+Gli editor di blueprint per UE4 sanno che non devono far vedere la `b` della variable nelle esposizioni visive user-friendly.
+
+<a name="3.2.1.4"></a>
+<a name="bp-var-bool-names"></a>
+##### 3.2.1.4 Boolean Names
+
+<a name="3.2.1.4.1"></a>
+###### 3.2.1.4.1 General And Independent State Information
+
+Tutti i boolean dovrebbero essere nominati come aggettivi descrittivi quando possibile se rappresentano informazioni generiche. Non includere parole che impostano la variable come una domanda, come per esempio `Is`. Quello è riservato alle functions.
+
+Esempio: usa `bDead` e `bHostile` **non** `bIsDead` e `bIsHostile`.
+
+Cerca di non usare verbi come `bRunning`. Verbs tend to lead to complex states.
+
+<a name="3.2.1.4.2"></a>
+###### 3.2.1.4.2 Complex States
+
+Do not to use booleans to represent complex and/or dependent states. This makes state adding and removing complex and no longer easily readable. Use an enumeration instead.
+
+Example: When defining a weapon, do **not** use `bReloading` and `bEquipping` if a weapon can't be both reloading and equipping. Define an enumeration named `EWeaponState` and use a variable with this type named `WeaponState` instead. This makes it far easier to add new states to weapons.
+
+Example: Do **not** use `bRunning` if you also need `bWalking` or `bSprinting`. This should be defined as an enumeration with clearly defined state names.
+
+<a name="3.2.1.5"></a>
+<a name="bp-vars-naming-context"></a>
+##### 3.2.1.5 Considered Context
+
+All variable names must not be redundant with their context as all variable references in Blueprint will always have context.
+
+<a name="3.2.1.5e"></a>
+###### 3.2.1.5e Examples
+
+Consider a Blueprint called `BP_PlayerCharacter`.
+
+**Bad**
+
+* `PlayerScore`
+* `PlayerKills`
+* `MyTargetPlayer`
+* `MyCharacterName`
+* `CharacterSkills`
+* `ChosenCharacterSkin`
+
+All of these variables are named redundantly. It is implied that the variable is representative of the `BP_PlayerCharacter` it belongs to because it is `BP_PlayerCharacter` that is defining these variables.
+
+**Good**
+
+* `Score`
+* `Kills`
+* `TargetPlayer`
+* `Name`
+* `Skills`
+* `Skin`
