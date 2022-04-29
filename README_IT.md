@@ -866,24 +866,24 @@ Cerca di non usare verbi come `bRunning`. Verbs tend to lead to complex states.
 <a name="3.2.1.4.2"></a>
 ###### 3.2.1.4.2 Complex States
 
-Do not to use booleans to represent complex and/or dependent states. This makes state adding and removing complex and no longer easily readable. Use an enumeration instead.
+Non usare booleans per rappresentare complex e/o dependent states. Ciò rende state adding e removing troppo complesso e non più facilmente leggibile. Piuttosto usa l'enumeration.
 
-Example: When defining a weapon, do **not** use `bReloading` and `bEquipping` if a weapon can't be both reloading and equipping. Define an enumeration named `EWeaponState` and use a variable with this type named `WeaponState` instead. This makes it far easier to add new states to weapons.
+Esempio: quando definisci un'arma, **non** usare `bReloading` e `bEquipping` se un'arma non essere in entrambi gli stati di reloading e equipping contemporeaneamente. Piuttosto definisci un enumeration nominato `EWeaponState` e usa una variable con questo tipo chiamata `WeaponState`. Fare ciò facilita aggiungere nuovi states alle armi.
 
-Example: Do **not** use `bRunning` if you also need `bWalking` or `bSprinting`. This should be defined as an enumeration with clearly defined state names.
+Esempio: **non** usare `bRunning` se hai bisogno pure di `bWalking` o `bSprinting`. Ciò dovrebbe essere definito da un enumeration con state names chiari e definiti.
 
 <a name="3.2.1.5"></a>
 <a name="bp-vars-naming-context"></a>
 ##### 3.2.1.5 Considered Context
 
-All variable names must not be redundant with their context as all variable references in Blueprint will always have context.
+Tutti i variable names non devono essere ridondanti con il loro contesto poichè tutte le  variable references in Blueprint hanno sempre contesto.
 
 <a name="3.2.1.5e"></a>
-###### 3.2.1.5e Examples
+###### 3.2.1.5e Esempi
 
-Consider a Blueprint called `BP_PlayerCharacter`.
+Considera un Blueprint chiamato `BP_PlayerCharacter`.
 
-**Bad**
+**Cattiva pratica**
 
 * `PlayerScore`
 * `PlayerKills`
@@ -892,9 +892,9 @@ Consider a Blueprint called `BP_PlayerCharacter`.
 * `CharacterSkills`
 * `ChosenCharacterSkin`
 
-All of these variables are named redundantly. It is implied that the variable is representative of the `BP_PlayerCharacter` it belongs to because it is `BP_PlayerCharacter` that is defining these variables.
+Tutte queste variables sono nominate in maniera ridondante. È implicato che la variable è rappresentativa del `BP_PlayerCharacter` a cui appartiene perchè è `BP_PlayerCharacter` che definisce queste variables.
 
-**Good**
+**Buona pratica**
 
 * `Score`
 * `Kills`
@@ -902,3 +902,61 @@ All of these variables are named redundantly. It is implied that the variable is
 * `Name`
 * `Skills`
 * `Skin`
+
+<a name="3.2.1.6"></a>
+<a name="bp-vars-naming-atomic"></a>
+##### 3.2.1.6 Do _Not_ Include Atomic Type Names
+
+Atomic or primitive variables sono variables che rappreentano data nella loro forma più semplice, come booleans, integers, floats, e enumerations.
+
+Strings e vectors sono considerati atomic in termini di stile quando si lavora con i Blueprints, tuttavia tecnicamente non sono atomici.
+
+> Mentre i vectors consistono in tre floats, vectors sono spesso in grado di essere manipolati come un insieme, stesso disorso per i rotators.
+
+> _Non_ considerare Text variables come atomic, stanno segretamente nascondendo localization functionality. L'atomic type di una stringa di caratteri è `String`, non `Text`.
+
+Atomic variables non dovrebbero avere il loro type name nel loro nome.
+
+Esempio; usa `Score`, `Kills`, e `Description` **non** `ScoreFloat`, `FloatKills`, `DescriptionString`.
+
+L'unica eccezione a questa regola è quando una variable rappresenta 'un numero di' qualcosa da essere contato _e_ quando usando un nome senza un  variable type non è facile da leggere.
+
+Esempio: un generatore di recizione ha bisogno di generare un tot X di paletti, chiamati in inglese posts. Conserva X in `NumPosts` o `PostsCount` invece di `Posts` poichè `Posts` potrebbe essre interpretato come un Array di un variable type dei `Post`.
+
+<a name="3.2.1.7"></a>
+<a name="bp-vars-naming-complex"></a>
+##### 3.2.1.7 Do Include Non-Atomic Type Names
+
+Non-atomic or complex variables are variables that represent data as a collection of atomic variables. Structs, Classes, Interfaces, and primitives with hidden behavior such as `Text` and `Name` all qualify under this rule.
+
+> While an Array of an atomic variable type is a list of variables, Arrays do not change the 'atomicness' of a variable type.
+
+These variables should include their type name while still considering their context.
+
+If a class owns an instance of a complex variable, i.e. if a `BP_PlayerCharacter` owns a `BP_Hat`, it should be stored as the variable type as without any name modifications.
+
+Example: Use `Hat`, `Flag`, and `Ability` **not** `MyHat`, `MyFlag`, and `PlayerAbility`.
+
+If a class does not own the value a complex variable represents, you should use a noun along with the variable type.
+
+Example: If a `BP_Turret` has the ability to target a `BP_PlayerCharacter`, it should store its target as `TargetPlayer` as when in the context of `BP_Turret` it should be clear that it is a reference to another complex variable type that it does not own.
+
+
+<a name="3.2.1.8"></a>
+<a name="bp-vars-naming-arrays"></a>
+##### 3.2.1.8 Arrays
+
+Arrays follow the same naming rules as above, but should be named as a plural noun.
+
+Example: Use `Targets`, `Hats`, and `EnemyPlayers`, **not** `TargetList`, `HatArray`, `EnemyPlayerArray`.
+
+
+<a name="3.2.2"></a>
+<a name="bp-vars-editable"></a>
+#### 3.2.2 Editable Variables
+
+All variables that are safe to change the value of in order to configure behavior of a blueprint should be marked as `Editable`.
+
+Conversely, all variables that are not safe to change or should not be exposed to designers should _not_ be marked as editable, unless for engineering reasons the variable must be marked as `Expose On Spawn`.
+
+Do not arbitrarily mark variables as `Editable`.
