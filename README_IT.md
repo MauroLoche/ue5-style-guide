@@ -965,17 +965,17 @@ Non segnare arbitrariamente qualsiasi variables come `Editable`.
 <a name="bp-vars-editable-tooltips"></a>
 ##### 3.2.2.1 Tooltips
 
-All `Editable` variables, including those marked editable just so they can be marked as `Expose On Spawn`, should have a description in their `Tooltip` fields that explains how changing this value affects the behavior of the blueprint.
+Tutte le variables `Editable`, includendo pure quelle segnate come editable giusto per rientrare nella categoria `Expose On Spawn`, dovrebbero avere una descrizione nei loro campi `Tooltip` che spiegano come cambiare questa value cambia il behavior del blueprint.
 
 <a name="3.2.2.2"></a>
 <a name="bp-vars-editable-ranges"></a>
 ##### 3.2.2.2 Slider And Value Ranges
 
-All `Editable` variables should make use of slider and value ranges if there is ever a value that a variable should _not_ be set to.
+Tutte le variables `Editable`dovrebbero fare uso dello slide e dei value ranges se mai ci fosse una value a cui la variable _non_ dovrebbe essere settata.
 
-Example: A blueprint that generates fence posts might have an editable variable named `PostsCount` and a value of -1 would not make any sense. Use the range fields to mark 0 as a minimum.
+Esempio: un blueprint che genera paletti, in inglese posts, per una recinzione potrebbe avere una editable variable chiamata `PostsCount` e una value di -1 non avrebbe alcun senso. Usa i range fields per impostare 0 come valore minimo.
 
-If an editable variable is used in a Construction Script, it should have a reasonable Slider Range defined so that someone can not accidentally assign it a large value that could crash the editor.
+Se una editable variable è usata in un Construction Script, it should have a reasonable Slider Range defined so that someone can not accidentally assign it a large value that could crash the editor.
 
 A Value Range only needs to be defined if the bounds of a value are known. While a Slider Range prevents accidental large number inputs, an undefined Value Range allows a user to specify a value outside the Slider Range that may be considered 'dangerous' but still valid.
 
