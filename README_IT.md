@@ -927,36 +927,94 @@ Esempio: un generatore di recizione ha bisogno di generare un tot X di paletti, 
 <a name="bp-vars-naming-complex"></a>
 ##### 3.2.1.7 Do Include Non-Atomic Type Names
 
-Non-atomic or complex variables are variables that represent data as a collection of atomic variables. Structs, Classes, Interfaces, and primitives with hidden behavior such as `Text` and `Name` all qualify under this rule.
+Non-atomic o complex variables sono variables che rappresentano data come collezione di atomic variables. Structs, Classes, Interfaces, e primitives con hidden behavior quali `Text` e `Name` stanno tutti dentro questa regola.
 
-> While an Array of an atomic variable type is a list of variables, Arrays do not change the 'atomicness' of a variable type.
+> Sebbene un Array di un atomic variable type è una lista di variables, gli Arrays non cambiano la 'atomicness' del variable type.
 
-These variables should include their type name while still considering their context.
+Queste variables dovrebbero includere il loro type name sempre tenendo in considerazione il loro contesto.
 
-If a class owns an instance of a complex variable, i.e. if a `BP_PlayerCharacter` owns a `BP_Hat`, it should be stored as the variable type as without any name modifications.
+Se una class possiede una instance di una complex variable, i.e. se un `BP_PlayerCharacter` possiede un `BP_Hat`, quest'ultima dovrebbe essere classificata come la variable type senza modifiche sul nome.
 
-Example: Use `Hat`, `Flag`, and `Ability` **not** `MyHat`, `MyFlag`, and `PlayerAbility`.
+Esempio: usa `Hat`, `Flag`, e `Ability` **non** `MyHat`, `MyFlag`, e `PlayerAbility`.
 
-If a class does not own the value a complex variable represents, you should use a noun along with the variable type.
+Se una class non possiede la value che la complex variable rappresenta, dovresti usare un sostantivo you should use a noun seguente la variable type.
 
-Example: If a `BP_Turret` has the ability to target a `BP_PlayerCharacter`, it should store its target as `TargetPlayer` as when in the context of `BP_Turret` it should be clear that it is a reference to another complex variable type that it does not own.
+Esempio: se un `BP_Turret` ha l'abilità di targettare un `BP_PlayerCharacter`, dovrebbe conservare il suo target come `TargetPlayer` poichè nel contesto di `BP_Turret` dovrebbe essere chiaro che è una reference a un altro complex variable type che non possiede.
 
 
 <a name="3.2.1.8"></a>
 <a name="bp-vars-naming-arrays"></a>
 ##### 3.2.1.8 Arrays
 
-Arrays follow the same naming rules as above, but should be named as a plural noun.
+Arrays seguono le stesse regole di nominazione qua sopra descritte, ma dovrebbero essere nominate con sostantivi plurali.
 
-Example: Use `Targets`, `Hats`, and `EnemyPlayers`, **not** `TargetList`, `HatArray`, `EnemyPlayerArray`.
+Esempio: usa `Targets`, `Hats`, e `EnemyPlayers`, **non** `TargetList`, `HatArray`, `EnemyPlayerArray`.
 
 
 <a name="3.2.2"></a>
 <a name="bp-vars-editable"></a>
 #### 3.2.2 Editable Variables
 
-All variables that are safe to change the value of in order to configure behavior of a blueprint should be marked as `Editable`.
+Tutte le variables di cui è sicuro cambiarne la value in modo da configurare il comportamento di un blueprint dovrebbero essere segnate come `Editable`.
 
-Conversely, all variables that are not safe to change or should not be exposed to designers should _not_ be marked as editable, unless for engineering reasons the variable must be marked as `Expose On Spawn`.
+Invece, tutte le variables che non sono sicure da cambiare o non dovrebbero essere esposte ai designer _non_ devono essere segnate come editable, tranne per quei motivi di engineering dove allora la variable deve essere segnata come `Expose On Spawn`.
 
-Do not arbitrarily mark variables as `Editable`.
+Non segnare arbitrariamente qualsiasi variables come `Editable`.
+
+<a name="3.2.2.1"></a>
+<a name="bp-vars-editable-tooltips"></a>
+##### 3.2.2.1 Tooltips
+
+All `Editable` variables, including those marked editable just so they can be marked as `Expose On Spawn`, should have a description in their `Tooltip` fields that explains how changing this value affects the behavior of the blueprint.
+
+<a name="3.2.2.2"></a>
+<a name="bp-vars-editable-ranges"></a>
+##### 3.2.2.2 Slider And Value Ranges
+
+All `Editable` variables should make use of slider and value ranges if there is ever a value that a variable should _not_ be set to.
+
+Example: A blueprint that generates fence posts might have an editable variable named `PostsCount` and a value of -1 would not make any sense. Use the range fields to mark 0 as a minimum.
+
+If an editable variable is used in a Construction Script, it should have a reasonable Slider Range defined so that someone can not accidentally assign it a large value that could crash the editor.
+
+A Value Range only needs to be defined if the bounds of a value are known. While a Slider Range prevents accidental large number inputs, an undefined Value Range allows a user to specify a value outside the Slider Range that may be considered 'dangerous' but still valid.
+
+<a name="3.2.3"></a>
+<a name="bp-vars-categories"></a>
+#### 3.2.3 Categories
+
+If a class has only a small number of variables, categories are not required.
+
+If a class has a moderate amount of variables (5-10), all `Editable` variables should have a non-default category assigned. A common category is `Config`.
+
+If a class has a large amount of variables, all `Editable` variables should be categorized into sub-categories using the category `Config` as the base category. Non-editable variables should be categorized into descriptive categories describing their usage.
+
+> You can define sub-categories by using the pipe character `|`, i.e. `Config | Animations`.
+
+Example: A weapon class set of variables might be organized as:
+
+    |-- Config
+    |    |-- Animations
+    |    |-- Effects
+    |    |-- Audio
+    |    |-- Recoil
+    |    |-- Timings
+    |-- Animations
+    |-- State
+    |-- Visuals
+
+<a name="3.2.4"></a>
+<a name="bp-vars-access"></a>
+#### 3.2.4 Variable Access Level
+
+In C++, variables have a concept of access level. Public means any code outside the class can access the variable. Protected means only the class and any child classes can access this variable internally. Private means only this class and no child classes can access this variable.
+
+Blueprints do not have a defined concept of protected access currently.
+
+Treat `Editable` variables as public variables. Treat non-editable variables as protected variables.
+
+<a name="3.2.4.1"></a>
+<a name="bp-vars-access-private"></a>
+##### 3.2.4.1 Private Variables
+
+Unless it is known that a variable should only be accessed within the class it is defined and never a child class, do not mark variables as private. Until variables are able to be marked `protected`, reserve private for when you absolutely know you want to restrict child class usage.
