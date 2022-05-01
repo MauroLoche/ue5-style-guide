@@ -975,23 +975,23 @@ Tutte le variables `Editable`dovrebbero fare uso dello slide e dei value ranges 
 
 Esempio: un blueprint che genera paletti, in inglese posts, per una recinzione potrebbe avere una editable variable chiamata `PostsCount` e una value di -1 non avrebbe alcun senso. Usa i range fields per impostare 0 come valore minimo.
 
-Se una editable variable è usata in un Construction Script, it should have a reasonable Slider Range defined so that someone can not accidentally assign it a large value that could crash the editor.
+Se una editable variable è usata in un Construction Script, dovrebbe avere uno Slider Range definito e limitato, in modo che nessuno possa per errore dargli una value troppo alta e far crashare l'editor di conseguenzade.
 
-A Value Range only needs to be defined if the bounds of a value are known. While a Slider Range prevents accidental large number inputs, an undefined Value Range allows a user to specify a value outside the Slider Range that may be considered 'dangerous' but still valid.
+Il Value Range ha bisogno di essere definito solo se i limiti della value sono conosciuti. Mentre uno Slider Range previene l'input per errore di numeri grossi, un undefined Value Range permette all'utente di specificare la value fuori dallo Slider Range che può essere considerato 'pericoloso' ma tuttavia valido.
 
 <a name="3.2.3"></a>
 <a name="bp-vars-categories"></a>
 #### 3.2.3 Categories
 
-If a class has only a small number of variables, categories are not required.
+Se una class ha solo un poccolo numero di variables, le categories non sono richieste.
 
-If a class has a moderate amount of variables (5-10), all `Editable` variables should have a non-default category assigned. A common category is `Config`.
+Se una class ha un numero modesto di variables (5-10), tutte le variables `Editable` dovrebbero avere assegnata non-default. Una category comune è `Config`.
 
-If a class has a large amount of variables, all `Editable` variables should be categorized into sub-categories using the category `Config` as the base category. Non-editable variables should be categorized into descriptive categories describing their usage.
+Se una class ha un numero grosso di variables, tutte le variables `Editable` dovrebbero essere categorizzate in sub-categories usando la category `Config` come base category. Non-editable variables dovrebbero essere categorizzate in descriptive categories descrivendo il loro utilizzo.
 
-> You can define sub-categories by using the pipe character `|`, i.e. `Config | Animations`.
+> Puoi definire sub-categories usando il pipe character `|`, i.e. `Config | Animations`.
 
-Example: A weapon class set of variables might be organized as:
+Esempio: un weapon class set di variables potrebbe essere organizzato così:
 
     |-- Config
     |    |-- Animations
@@ -1007,14 +1007,37 @@ Example: A weapon class set of variables might be organized as:
 <a name="bp-vars-access"></a>
 #### 3.2.4 Variable Access Level
 
-In C++, variables have a concept of access level. Public means any code outside the class can access the variable. Protected means only the class and any child classes can access this variable internally. Private means only this class and no child classes can access this variable.
+In C++, variables hanno il concetto di access level. Public significa ogni codice fuori dalla classe può accedere alla variable. Protected significa che solo la class e ogni child classes può accedere a questa variable. Private significa che solo questa class e nessuna delle child classes può accedere a questa variable.
 
-Blueprints do not have a defined concept of protected access currently.
+I Blueprints ora come ora non hanno un defined concept di protected access.
 
-Treat `Editable` variables as public variables. Treat non-editable variables as protected variables.
+Tratta `Editable` variables come public variables. Tratta non-editable variables come protected variables.
 
 <a name="3.2.4.1"></a>
 <a name="bp-vars-access-private"></a>
 ##### 3.2.4.1 Private Variables
 
-Unless it is known that a variable should only be accessed within the class it is defined and never a child class, do not mark variables as private. Until variables are able to be marked `protected`, reserve private for when you absolutely know you want to restrict child class usage.
+A meno che non si sappia che una variable dovrebbe essere accessibile solo all'interno della class in cui è definita e mai una child class, non segnare queste variables come private. Sino a quando le variables sono in grado di essere segnate come `protected`, risparmia il private per quando sai con sicurezza che vuoi restringere il child class usage.
+
+<a name="3.2.5"></a>
+<a name="bp-vars-advanced"></a>
+#### 3.2.5 Advanced Display
+
+If a variable should be editable but often untouched, mark it as `Advanced Display`. This makes the variable hidden unless the advanced display arrow is clicked.
+
+To find the `Advanced Display` option, it is listed as an advanced displayed variable in the variable details list.
+
+<a name="3.2.6"></a>
+<a name="bp-vars-transient"></a>
+#### 3.2.6 Transient Variables
+
+Transient variables are variables that do not need to have their value saved and loaded and have an initial value of zero or null. This is useful for references to other objects and actors who's value isn't known until run-time. This prevents the editor from ever saving a reference to it, and speeds up saving and loading of the blueprint class.
+
+Because of this, all transient variables should always be initialized as zero or null. To do otherwise would result in hard to debug errors.
+
+<a name="3.2.7"></a>
+<a name="bp-vars-config"></a>
+#### 3.2.8 Config Variables
+
+Do not use the `Config Variable` flag. This makes it harder for designers to control blueprint behavior. Config variables should only be used in C++ for rarely changed variables. Think of them as `Advanced Advanced Display` variables.
+
