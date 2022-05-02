@@ -1023,21 +1023,21 @@ A meno che non si sappia che una variable dovrebbe essere accessibile solo all'i
 <a name="bp-vars-advanced"></a>
 #### 3.2.5 Advanced Display
 
-If a variable should be editable but often untouched, mark it as `Advanced Display`. This makes the variable hidden unless the advanced display arrow is clicked.
+Se una variable dovrebbe essere editable ma spesso untouched, marchiala come `Advanced Display`. Questo rende la variable nascosta a meno che la frecca advanced diplay sia clickata.
 
-To find the `Advanced Display` option, it is listed as an advanced displayed variable in the variable details list.
+Per trovare l'opzione `Advanced Display` , è mostrata come una advanced displayed variable nella lista variable details.
 
 <a name="3.2.6"></a>
 <a name="bp-vars-transient"></a>
 #### 3.2.6 Transient Variables
 
-Transient variables are variables that do not need to have their value saved and loaded and have an initial value of zero or null. This is useful for references to other objects and actors who's value isn't known until run-time. This prevents the editor from ever saving a reference to it, and speeds up saving and loading of the blueprint class.
+Le Transient variables sono variables che non hanno bisogno che la loro value sia salvata e caricata e hanno una value iniziale pari a zero o null. Ciò è utile per references a altri objects e actors il cui loro valore non è saputo sino al run-time. Ciò previene che l'editor salvi una reference verso essa, e velocizza salvare e caricare dalla blueprint class.
 
-Because of this, all transient variables should always be initialized as zero or null. To do otherwise would result in hard to debug errors.
+A causa di questo, tutte le transient variables dovrebbero sempre essere initialized come zero o null. Non fare questo creerebbe errori difficili da risolvere.
 
 <a name="3.2.7"></a>
 <a name="bp-vars-config"></a>
 #### 3.2.8 Config Variables
 
-Do not use the `Config Variable` flag. This makes it harder for designers to control blueprint behavior. Config variables should only be used in C++ for rarely changed variables. Think of them as `Advanced Advanced Display` variables.
+Non usare la flag `Config Variable`. Questa rende difficile ai designer controllare il comportamento del blueprint. Le Config variables dovrebbero essere usate solo in C++ per variables che cambiate raramente. Pensa ad esse come se fossero `Advanced Advanced Display` variables.
 
