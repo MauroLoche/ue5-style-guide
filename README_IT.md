@@ -1041,3 +1041,169 @@ A causa di questo, tutte le transient variables dovrebbero sempre essere initial
 
 Non usare la flag `Config Variable`. Questa rende difficile ai designer controllare il comportamento del blueprint. Le Config variables dovrebbero essere usate solo in C++ per variables che cambiate raramente. Pensa ad esse come se fossero `Advanced Advanced Display` variables.
 
+<a name="3.3"></a>
+<a name="bp-functions"></a>
+### 3.3 Functions, Events, and Event Dispatchers
+
+Questa sezione descrive come dovresti author functions, events, e event dispatchers. Tutto ciò che si applica alle functions si applica pure agli eventi, tranne ciò di cui viene fatta nota.
+
+<a name="3.3.1"></a>
+<a name="bp-funcs-naming"></a>
+#### 3.3.1 Function Naming
+
+La nominazione di functions, events, e event dispatchers è di importanza critica. Basandosi solamente sul nome, certe assunzioni possono essere fatte sulle function. Per esempio:
+
+* È una pure function?
+* Sta fetching state information?
+* È un handler?
+* È un RPC?
+* Quale è il suo scopo?
+
+Queste domande e altre possono essere riposte quando le funziono sono nominate in maniera appropriata.
+
+<a name="3.3.1.1"></a>
+<a name="bp-funcs-naming-verbs"></a>
+#### 3.3.1.1 All Functions Should Be Verbs
+
+Tutte le functions e events fanno qualche forma di azione, che sia prendere info, calcolare data, o far esplodere qualcosa. Di conseguenza, tutte le functions dovrebbero iniziare con verbi. Dovrebbero essere coniugate nel presente quando possibile. Dovrebbero avere anche del contesto riguardante cosa fanno.
+
+`OnRep` functions, event handlers, e event dispatchers sono una eccezione a questa regola.
+
+Buoni esempi:
+
+* `Fire` - Buon esempio se è in un Character / Weapon class, perchè ha contesto. Cattivo esempio se è in un Barrel / Grass / qualsiasi class poco chiara.
+* `Jump` - Buon esempio se è in un Character class, altrimenti ha bisogno di contesto.
+* `Explode`
+* `ReceiveMessage`
+* `SortPlayerArray`
+* `GetArmOffset`
+* `GetCoordinates`
+* `UpdateTransforms`
+* `EnableBigHeadMode`
+* `IsEnemy` - ["Is" è un verbo.](http://writingexplained.org/is-is-a-verb)
+
+Cattivi esempi:
+
+* `Dead` - È morto? Morirà?
+* `Rock`
+* `ProcessData` - Ambiguo, queste parole non significano niente.
+* `PlayerState` - I sostantivi sono ambigui.
+* `Color` - Verbo senza contesto, sostantivo ambiguo.
+
+<a name="3.3.1.2"></a>
+<a name="bp-funcs-naming-onrep"></a>
+#### 3.3.1.2 Property RepNotify Functions Always `OnRep_Variable`
+
+Tutte le functions for replicated con notification variables dovrebbero avere la form `OnRep_Variable`. Ciò è forzato dal Blueprint editor. Se stai scrivendo una function in C++ `OnRep` tuttavia, dovrebbe seguire questa convenzione quando la esponi ai Blueprints.
+
+<a name="3.3.1.3"></a>
+<a name="bp-funcs-naming-bool"></a>
+#### 3.3.1.3 Info Functions Returning Bool Should Ask Questions
+
+Quando scrivi una function che non cambia lo state di o modifica qualsasi object e è puramente per ottenere information, state, o computing a yes/no value, dovrebbe fare una domanda. Questo dovrebbe inoltre seguire la [the verb rule](#bp-funcs-naming-verbs).
+
+Questo è estremamente importante perchè se una domanda non viene fatta, può essere dato per scontato che la function faccia una action e stia riferendo se quell'action ha avuto successo.
+
+Buoni esempi:
+
+* `IsDead`
+* `IsOnFire`
+* `IsAlive`
+* `IsSpeaking`
+* `IsHavingAnExistentialCrisis`
+* `IsVisible`
+* `HasWeapon` - ["Has" è un verbo.](http://grammar.yourdictionary.com/parts-of-speech/verbs/Helping-Verbs.html)
+* `WasCharging` - ["Was" è il past-tense di "be".](http://grammar.yourdictionary.com/parts-of-speech/verbs/Helping-Verbs.html) Usa "was" quando ti riferisci a 'previous frame' o 'previous state'.
+* `CanReload` - ["Can" è un verbo.](http://grammar.yourdictionary.com/parts-of-speech/verbs/Helping-Verbs.html)
+
+Cattivi esempi:
+
+* `Fire` - È a fuoco? Sparerà? Spara?
+* `OnFire` - Può essere confuso con un event dispatcher per sparare.
+* `Dead` - È morto? Morirà?
+* `Visibility` - È visibile? Imposta visibilità? È una descrizione di condizioni di volo?
+
+<a name="3.3.1.4"></a>
+<a name="bp-funcs-naming-eventhandlers"></a>
+#### 3.3.1.4 Event Handlers and Dispatchers Should Start With `On`
+
+Any function that handles an event or dispatches an event should start with `On` and continue to follow [the verb rule](#bp-funcs-naming-verbs). The verb may move to the end however if past-tense reads better.
+
+[Collocations](http://dictionary.cambridge.org/us/grammar/british-grammar/about-words-clauses-and-sentences/collocation) of the word `On` are exempt from following the verb rule.
+
+`Handle` is not allowed. It is 'Unreal' to use `On` instead of `Handle`, while other frameworks may prefer to use `Handle` instead of `On`.
+
+Good examples:
+
+* `OnDeath` - Common collocation in games
+* `OnPickup`
+* `OnReceiveMessage`
+* `OnMessageRecieved`
+* `OnTargetChanged`
+* `OnClick`
+* `OnLeave`
+
+Bad examples:
+
+* `OnData`
+* `OnTarget`
+* `HandleMessage`
+* `HandleDeath`
+
+<a name="3.3.1.5"></a>
+<a name="bp-funcs-naming-rpcs"></a>
+#### 3.3.1.5 Remote Procedure Calls Should Be Prefixed With Target
+
+Any time an RPC is created, it should be prefixed with either `Server`, `Client`, or `Multicast`. No exceptions.
+
+After the prefix, follow all other rules regarding function naming.
+
+Good examples:
+
+* `ServerFireWeapon`
+* `ClientNotifyDeath`
+* `MulticastSpawnTracerEffect`
+
+Bad examples:
+
+* `FireWeapon` - Does not indicate its an RPC of some kind.
+* `ServerClientBroadcast` - Confusing.
+* `AllNotifyDeath` - Use `Multicast`, never `All`.
+* `ClientWeapon` - No verb, ambiguous.
+
+
+<a name="3.3.2"></a>
+<a name="bp-funcs-return"></a>
+#### 3.3.2 All Functions Must Have Return Nodes
+
+All functions must have return nodes, no exceptions.
+
+Return nodes explicitly note that a function has finished its execution. In a world where blueprints can be filled with `Sequence`, `ForLoopWithBreak`, and backwards reroute nodes, explicit execution flow is important for readability, maintenance, and easier debugging.
+
+The Blueprint compiler is able to follow the flow of execution and will warn you if there is a branch of your code with an unhandled return or bad flow if you use return nodes.
+
+In situations like where a programmer may add a pin to a Sequence node or add logic after a for loop completes but the loop iteration might return early, this can often result in an accidental error in code flow. The warnings the Blueprint compiler will alert everyone of these issues immediately.
+
+<a name="3.3.3"></a>
+<a name="bp-graphs-funcs-node-limit"></a>
+#### 3.3.3 No Function Should Have More Than 50 Nodes
+
+Simply, no function should have more than 50 nodes. Any function this big should be broken down into smaller functions for readability and ease of maintenance.
+
+The following nodes are not counted as they are deemed to not increase function complexity:
+
+* Comment
+* Route
+* Cast
+* Getting a Variable
+* Breaking a Struct
+* Function Entry
+* Self
+
+<a name="3.3.4"></a>
+<a name="bp-graphs-funcs-description"></a>
+#### 3.3.4 All Public Functions Should Have A Description
+
+This rule applies more to public facing or marketplace blueprints, so that others can more easily navigate and consume your blueprint API.
+
+Simply, any function that has an access specificer of Public should have its description filled out.
