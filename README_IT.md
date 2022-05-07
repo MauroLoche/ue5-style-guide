@@ -1125,15 +1125,15 @@ Cattivi esempi:
 
 <a name="3.3.1.4"></a>
 <a name="bp-funcs-naming-eventhandlers"></a>
-#### 3.3.1.4 Event Handlers and Dispatchers Should Start With `On`
+#### 3.3.1.4 Event Handlers e Dispatchers Should Start With `On`
 
-Any function that handles an event or dispatches an event should start with `On` and continue to follow [the verb rule](#bp-funcs-naming-verbs). The verb may move to the end however if past-tense reads better.
+Qualsiasi function that handles un event o dispatches un event dovrebbe iniziare con `On` e continuare [the verb rule](#bp-funcs-naming-verbs). Il verbo si può sèpstare alla fine se, in caso di coniugazione in past-tense, rende meglio.
 
-[Collocations](http://dictionary.cambridge.org/us/grammar/british-grammar/about-words-clauses-and-sentences/collocation) of the word `On` are exempt from following the verb rule.
+[Collocations](http://dictionary.cambridge.org/us/grammar/british-grammar/about-words-clauses-and-sentences/collocation) della parola `On` sono esenti dal seguire la regola del verbo.
 
-`Handle` is not allowed. It is 'Unreal' to use `On` instead of `Handle`, while other frameworks may prefer to use `Handle` instead of `On`.
+`Handle` non è permesso. È 'Unreal' usare `On` al posto di `Handle`, mentre altri frameworks possono preferire usare `Handle` al posto di `On`.
 
-Good examples:
+Esempi corretti:
 
 * `OnDeath` - Common collocation in games
 * `OnPickup`
@@ -1143,7 +1143,7 @@ Good examples:
 * `OnClick`
 * `OnLeave`
 
-Bad examples:
+Cattivi esempi:
 
 * `OnData`
 * `OnTarget`
@@ -1154,17 +1154,17 @@ Bad examples:
 <a name="bp-funcs-naming-rpcs"></a>
 #### 3.3.1.5 Remote Procedure Calls Should Be Prefixed With Target
 
-Any time an RPC is created, it should be prefixed with either `Server`, `Client`, or `Multicast`. No exceptions.
+Ogni volta che una RPC viene creata, dovrebbe essere prefissata con `Server`, `Client`, o `Multicast`. Nessuna eccezione.
 
-After the prefix, follow all other rules regarding function naming.
+Dopo il prefisso, segui tutte le altre regole riguardandi la nominazione delle function.
 
-Good examples:
+Esempi corretti:
 
 * `ServerFireWeapon`
 * `ClientNotifyDeath`
 * `MulticastSpawnTracerEffect`
 
-Bad examples:
+Cattivi esempi:
 
 * `FireWeapon` - Does not indicate its an RPC of some kind.
 * `ServerClientBroadcast` - Confusing.
