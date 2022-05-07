@@ -1207,3 +1207,264 @@ The following nodes are not counted as they are deemed to not increase function 
 This rule applies more to public facing or marketplace blueprints, so that others can more easily navigate and consume your blueprint API.
 
 Simply, any function that has an access specificer of Public should have its description filled out.
+#### 3.3.4 All Public Functions Should Have A Description
+
+This rule applies more to public facing or marketplace blueprints, so that others can more easily navigate and consume your blueprint API.
+
+Simply, any function that has an access specificer of Public should have its description filled out.
+
+<a name="3.3.5"></a>
+<a name="bp-graphs-funcs-plugin-category"></a>
+#### 3.3.5 All Custom Static Plugin `BlueprintCallable` Functions Must Be Categorized By Plugin Name
+
+If your project includes a plugin that defines `static` `BlueprintCallable` functions, they should have their category set to the plugin's name or a subset category of the plugin's name.
+
+For example, `Zed Camera Interface` or `Zed Camera Interface | Image Capturing`.
+
+<a name="3.4"></a>
+<a name="bp-graphs"></a>
+### 3.4 Blueprint Graphs
+
+This section covers things that apply to all Blueprint graphs.
+
+<a name="3.4.1"></a>
+<a name="bp-graphs-spaghetti"></a>
+#### 3.4.1 No Spaghetti
+
+Wires should have clear beginnings and ends. You should never have to mentally untangle wires to make sense of a graph. Many of the following sections are dedicated to reducing spaghetti.
+
+<a name="3.4.2"></a>
+<a name="bp-graphs-align-wires"></a>
+#### 3.4.2 Align Wires Not Nodes
+
+Always align wires, not nodes. You can't always control the size and pin location on a node, but you can always control the location of a node and thus control the wires. Straight wires provide clear linear flow. Wiggly wires wear wits wickedly. You can straighten wires by using the Straighten Connections command with BP nodes selected. Hotkey: Q
+
+Good example: The tops of the nodes are staggered to keep a perfectly straight white exec line.
+![Aligned By Wires](https://github.com/Allar/ue5-style-guide/blob/main/images/bp-graphs-align-wires-good.png?raw=true "Aligned By Wires")
+
+Bad Example: The tops of the nodes are aligned creating a wiggly white exec line.
+![Bad](https://github.com/Allar/ue5-style-guide/blob/main/images/bp-graphs-align-wires-bad.png?raw=true "Wiggly")
+
+Acceptable Example: Certain nodes might not cooperate no matter how you use the alignment tools. In this situation, try to minimize the wiggle by bringing the node in closer.
+![Acceptable](https://github.com/Allar/ue5-style-guide/blob/main/images/bp-graphs-align-wires-acceptable.png?raw=true "Acceptable")
+
+<a name="3.4.3"></a>
+<a name="bp-graphs-exec-first-class"></a>
+#### 3.4.3 White Exec Lines Are Top Priority
+
+If you ever have to decide between straightening a linear white exec line or straightening data lines of some kind, always straighten the white exec line.
+
+<a name="3.4.4"></a>
+<a name="bp-graphs-block-comments"></a>
+#### 3.4.4 Graphs Should Be Reasonably Commented
+
+Blocks of nodes should be wrapped in comments that describe their higher-level behavior. While every function should be well named so that each individual node is easily readable and understandable, groups of nodes contributing to a purpose should have their purpose described in a comment block. If a function does not have many blocks of nodes and its clear that the nodes are serving a direct purpose in the function's goal, then they do not need to be commented as the function name and  description should suffice.
+
+<a name="3.4.5"></a>
+<a name="bp-graphs-cast-error-handling"></a>
+#### 3.4.5 Graphs Should Handle Casting Errors Where Appropriate
+
+If a function or event assumes that a cast always succeeds, it should appropriately report a failure in logic if the cast fails. This lets others know why something that is 'supposed to work' doesn't. A function should also attempt a graceful recover after a failed cast if it's known that the reference being casted could ever fail to be casted.
+
+This does not mean every cast node should have its failure handled. In many cases, especially events regarding things like collisions, it is expected that execution flow terminates on a failed cast quietly.
+
+<a name="3.4.6"></a>
+<a name="bp-graphs-dangling-nodes"></a>
+#### 3.4.6 Graphs Should Not Have Any Dangling / Loose / Dead Nodes
+
+All nodes in all blueprint graphs must have a purpose. You should not leave dangling blueprint nodes around that have no purpose or are not executed.
+
+**[⬆ Back to Top](#table-of-contents)**
+
+
+<a name="4"></a>
+<a name="Static Meshes"></a>
+<a name="s"></a>
+## 4. Static Meshes
+
+This section will focus on Static Mesh assets and their internals.
+
+<a name="4.1"></a>
+<a name="s-uvs"></a>
+### 4.1 Static Mesh UVs
+
+If Linter is reporting bad UVs and you can't seem to track it down, open the resulting `.log` file in your project's `Saved/Logs` folder for exact details as to why it's failing. I am hoping to include these messages in the Lint report in the future.
+
+<a name="4.1.1"></a>
+<a name="s-uvs-no-missing"></a>
+#### 4.1.1 All Meshes Must Have UVs
+
+Pretty simple. All meshes, regardless how they are to be used, should not be missing UVs.
+
+<a name="4.1.2"></a>
+<a name="s-uvs-no-overlapping"></a>
+#### 4.1.2 All Meshes Must Not Have Overlapping UVs for Lightmaps
+
+Pretty simple. All meshes, regardless how they are to be used, should have valid non-overlapping UVs.
+
+<a name="4.2"></a>
+<a name="s-lods"></a>
+### 4.2 LODs Should Be Set Up Correctly
+
+This is a subjective check on a per-project basis, but as a general rule any mesh that can be seen at varying distances should have proper LODs.
+
+<a name="4.3"></a>
+<a name="s-modular-snapping"></a>
+### 4.3 Modular Socketless Assets Should Snap To The Grid Cleanly
+
+This is a subjective check on a per-asset basis, however any modular socketless assets should snap together cleanly based on the project's grid settings.
+
+It is up to the project whether to snap based on a power of 2 grid or on a base 10 grid. However if you are authoring modular socketless assets for the marketplace, Epic's requirement is that they snap cleanly when the grid is set to 10 units or bigger.
+
+<a name="4.4"></a>
+<a name="s-collision"></a>
+### 4.4 All Meshes Must Have Collision
+
+Regardless of whether an asset is going to be used for collision in a level, all meshes should have proper collision defined. This helps the engine with things such as bounds calculations, occlusion, and lighting. Collision should also be well-formed to the asset.
+
+<a name="4.5"></a>
+<a name="s-scaled"></a>
+### 4.5 All Meshes Should Be Scaled Correctly
+
+This is a subjective check on a per-project basis, however all assets should be scaled correctly to their project. Level designers or blueprint authors should not have to tweak the scale of meshes to get them to confirm in the editor. Scaling meshes in the engine should be treated as a scale override, not a scale correction.
+
+**[⬆ Back to Top](#table-of-contents)**
+
+
+<a name="5"></a>
+<a name="Niagara"></a>
+<a name="ng"></a>
+## 5. Niagara
+
+This section will focus on Niagara assets and their internals.
+
+<a name="5.1"></a>
+<a name="ng-rules"></a>
+### 5.1 No Spaces, Ever
+
+As mentioned in [00.1 Forbidden Identifiers](#00), spaces and all white space characters are forbidden in identifiers. This is especially true for Niagara systems as it makes working with things significantly harder if not impossible when working with HLSL or other means of scripting within Niagara and trying to reference an identifier.
+
+(Original Contribution by [@dunenkoff](https://github.com/Allar/ue5-style-guide/issues/58))
+
+
+**[⬆ Back to Top](#table-of-contents)**
+
+
+<a name="6"></a>
+<a name="Levels"></a>
+<a name="levels"></a>
+## 6. Levels / Maps
+
+[See Terminology Note](#terms-level-map) regarding "levels" vs "maps".
+
+This section will focus on Level assets and their internals.
+
+<a name="6.1"></a>
+<a name="levels-no-errors-or-warnings"></a>
+### 6.1 No Errors Or Warnings
+
+All levels should load with zero errors or warnings. If a level loads with any errors or warnings, they should be fixed immediately to prevent cascading issues.
+
+You can run a map check on an open level in the editor by using the console command "map check".
+
+Please note: Linter is even more strict on this than the editor is currently, and will catch load errors that the editor will resolve on its own.
+
+<a name="6.2"></a>
+<a name="levels-lighting-should-be-built"></a>
+### 6.2 Lighting Should Be Built
+
+It is normal during development for levels to occasionally not have lighting built. When doing a test/internal/shipping build or any build that is to be distributed however, lighting should always be built.
+
+<a name="6.3"></a>
+<a name="levels-no-visible-z-fighting"></a>
+### 6.3 No Player Visible Z Fighting
+
+Levels should not have any [z-fighting](https://en.wikipedia.org/wiki/Z-fighting) in all areas visible to the player.
+
+<a name="6.4"></a>
+<a name="levels-mp-rules"></a>
+### 6.4 Marketplace Specific Rules
+
+If a project is to be sold on the UE4 Marketplace, it must follow these rules.
+
+<a name="6.4.1"></a>
+<a name="levels-mp-rules-overview"></a>
+#### 6.4.1 Overview Level
+
+If your project contains assets that should be visualized or demoed, you must have a map within your project that contains the name "Overview".
+
+This overview map, if it is visualizing assets, should be set up according to [Epic's guidelines](http://help.epicgames.com/customer/en/portal/articles/2592186-marketplace-submission-guidelines-preparing-your-assets#Required%20Levels%20and%20Maps).
+
+For example, `InteractionComponent_Overview`.
+
+<a name="6.4.2"></a>
+<a name="levels-mp-rules-demo"></a>
+#### 6.4.2 Demo Level
+
+If your project contains assets that should be demoed or come with some sort of tutorial, you must have a map within your project that contains the name "Demo". This level should also contain documentation within it in some form that illustrates how to use your project. See Epic's Content Examples project for good examples on how to do this.
+
+If your project is a gameplay mechanic or other form of system as opposed to an art pack, this can be the same as your "Overview" map.
+
+For example, `InteractionComponent_Overview_Demo`, `ExplosionKit_Demo`.
+
+**[⬆ Back to Top](#table-of-contents)**
+
+
+<a name="7"></a>
+<a name="textures"></a>
+## 7. Textures
+
+This section will focus on Texture assets and their internals.
+
+<a name="7.1"></a>
+<a name="textures-dimensions"></a>
+### 7.1 Dimensions Are Powers of 2
+
+All textures, except for UI textures, must have its dimensions in multiples of powers of 2. Textures do not have to be square.
+
+For example, `128x512`, `1024x1024`, `2048x1024`, `1024x2048`, `1x512`.
+
+<a name="7.2"></a>
+<a name="textures-density"></a>
+### 7.2 Texture Density Should Be Uniform
+
+All textures should be of a size appropriate for their standard use case. Appropriate texture density varies from project to project, but all textures within that project should have a consistent density.
+
+For example, if a project's texture density is 8 pixel per 1 unit, a texture that is meant to be applied to a 100x100 unit cube should be 1024x1024, as that is the closest power of 2 that matches the project's texture density.
+
+<a name="7.3"></a>
+<a name="textures-max-size"></a>
+### 7.3 Textures Should Be No Bigger than 8192
+
+No texture should have a dimension that exceeds 8192 in size, unless you have a very explicit reason to do so. Often, using a texture this big is simply just a waste of resources.
+
+<a name="7.4"></a>
+<a name="textures-group"></a>
+### 7.4 Textures Should Be Grouped Correctly
+
+Every texture has a Texture Group property used for LODing, and this should be set correctly based on its use. For example, all UI textures should belong in the UI texture group.
+
+**[⬆ Back to Top](#table-of-contents)**
+
+
+## Major Contributors
+
+* [Michael Allar](http://allarsblog.com): [GitHub](https://github.com/Allar), [Twitter](https://twitter.com/michaelallar)
+* [CosmoMyzrailGorynych](https://github.com/CosmoMyzrailGorynych)
+* [billymcguffin](https://github.com/billymcguffin)
+* [akenatsu](https://github.com/akenatsu)
+
+## License
+
+Copyright (c) 2016 Gamemakin LLC
+
+See [LICENSE](/LICENSE)
+
+**[⬆ Back to Top](#table-of-contents)**
+
+
+## Amendments
+
+We encourage you to fork this guide and change the rules to fit your team's style guide. Below, you may list some amendments to the style guide. This allows you to periodically update your style guide without having to deal with merge conflicts.
+
+# };
