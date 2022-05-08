@@ -1176,13 +1176,13 @@ Cattivi esempi:
 <a name="bp-funcs-return"></a>
 #### 3.3.2 All Functions Must Have Return Nodes
 
-All functions must have return nodes, no exceptions.
+Tutte le function devono avere return nodes, nessuna eccezione.
 
-Return nodes explicitly note that a function has finished its execution. In a world where blueprints can be filled with `Sequence`, `ForLoopWithBreak`, and backwards reroute nodes, explicit execution flow is important for readability, maintenance, and easier debugging.
+Return nodes esplicitamente explicitly note che una function ha completato la sua execution. In un mondo dove i blueprint possono essere riempieti di `Sequence`, `ForLoopWithBreak`, e backwards reroute nodes, explicit execution flow è importante per la leggibilità, manutenzione e un debugging più facile.
 
-The Blueprint compiler is able to follow the flow of execution and will warn you if there is a branch of your code with an unhandled return or bad flow if you use return nodes.
+il Blueprint compiler è in grado di seguire il flow of execution e ti avvertirà se è presente un branch del tuo codice con un unhandled return o bad flow se usi return nodes.
 
-In situations like where a programmer may add a pin to a Sequence node or add logic after a for loop completes but the loop iteration might return early, this can often result in an accidental error in code flow. The warnings the Blueprint compiler will alert everyone of these issues immediately.
+In situazioni dove un programmatore può aggiungere un pin a un Sequence node o aggiungere logic dopo un for loop completes ma la loop iteration potrebbe ritornare presto, ciò può spesso risultare o in un errore accidentale nel code flow. I warnings il Blueprint compiler avviseranno chiunque di questi problemi immediatamente.
 
 <a name="3.3.3"></a>
 <a name="bp-graphs-funcs-node-limit"></a>
