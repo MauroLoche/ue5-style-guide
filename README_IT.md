@@ -1188,9 +1188,9 @@ In situazioni dove un programmatore può aggiungere un pin a un Sequence node o 
 <a name="bp-graphs-funcs-node-limit"></a>
 #### 3.3.3 No Function Should Have More Than 50 Nodes
 
-Simply, no function should have more than 50 nodes. Any function this big should be broken down into smaller functions for readability and ease of maintenance.
+Semplicemente, nessuna funzione dovrebbe avere più di 50 nodes. Qualsiasi funzione più grande dovrebbe essere rimpicciolata in functions più piccole per leggibilità e facilità di manutenzione.
 
-The following nodes are not counted as they are deemed to not increase function complexity:
+I seguenti nodes non sono contati e sono considerati come non complicatori della function complexity:
 
 * Comment
 * Route
@@ -1204,40 +1204,35 @@ The following nodes are not counted as they are deemed to not increase function 
 <a name="bp-graphs-funcs-description"></a>
 #### 3.3.4 All Public Functions Should Have A Description
 
-This rule applies more to public facing or marketplace blueprints, so that others can more easily navigate and consume your blueprint API.
+Questa regola si applica più al public facing o marketplace blueprints, in modo che gli altri possano muoversi più facilmente e usare il blueprint API.
 
-Simply, any function that has an access specificer of Public should have its description filled out.
-#### 3.3.4 All Public Functions Should Have A Description
-
-This rule applies more to public facing or marketplace blueprints, so that others can more easily navigate and consume your blueprint API.
-
-Simply, any function that has an access specificer of Public should have its description filled out.
+Semplicemente, qualsiasi function che ha un access specificer of Public dovrebbe avere la sua descrizione filled out.
 
 <a name="3.3.5"></a>
 <a name="bp-graphs-funcs-plugin-category"></a>
 #### 3.3.5 All Custom Static Plugin `BlueprintCallable` Functions Must Be Categorized By Plugin Name
 
-If your project includes a plugin that defines `static` `BlueprintCallable` functions, they should have their category set to the plugin's name or a subset category of the plugin's name.
+Se il tuo progetto include un plugin che defines `static` `BlueprintCallable` functions, dovrebbero avere la loro category impostata sul nome del plugin o un subset category del nome del plugin.
 
-For example, `Zed Camera Interface` or `Zed Camera Interface | Image Capturing`.
+Per esempio, `Zed Camera Interface` o `Zed Camera Interface | Image Capturing`.
 
 <a name="3.4"></a>
 <a name="bp-graphs"></a>
 ### 3.4 Blueprint Graphs
 
-This section covers things that apply to all Blueprint graphs.
+Questa section riguarda cose che si applicano a tutti i Blueprint graphs.
 
 <a name="3.4.1"></a>
 <a name="bp-graphs-spaghetti"></a>
 #### 3.4.1 No Spaghetti
 
-Wires should have clear beginnings and ends. You should never have to mentally untangle wires to make sense of a graph. Many of the following sections are dedicated to reducing spaghetti.
+Wires dovrebbero avere inizi e fini chiari. Non dovresti mai srotolare in testa i wires per ottenere un senso logico dal graph. Molte di queste sezioni seguenti sono dedicate a ridurre gli spaghetti.
 
 <a name="3.4.2"></a>
 <a name="bp-graphs-align-wires"></a>
 #### 3.4.2 Align Wires Not Nodes
 
-Always align wires, not nodes. You can't always control the size and pin location on a node, but you can always control the location of a node and thus control the wires. Straight wires provide clear linear flow. Wiggly wires wear wits wickedly. You can straighten wires by using the Straighten Connections command with BP nodes selected. Hotkey: Q
+Allinea sempre wires, non nodes. Non puoi sempre controllare la grandezza e la pin location in un node, ma puoi sempre controllare il posto di un nodo e quindi controllare il wires. Wires dritti rendono un flow di lettura chiaro e lineare. Wiggly wires wear wits wickedly. Puoi raddrizzare i wires usando il Straighten Connections command con BP nodes selected. Hotkey: Q
 
 Good example: The tops of the nodes are staggered to keep a perfectly straight white exec line.
 ![Aligned By Wires](https://github.com/Allar/ue5-style-guide/blob/main/images/bp-graphs-align-wires-good.png?raw=true "Aligned By Wires")
