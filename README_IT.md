@@ -1409,35 +1409,35 @@ For example, `InteractionComponent_Overview_Demo`, `ExplosionKit_Demo`.
 <a name="textures"></a>
 ## 7. Textures
 
-This section will focus on Texture assets and their internals.
+Questa sezione si concentrerà sulle Texture e i loro internals.
 
 <a name="7.1"></a>
 <a name="textures-dimensions"></a>
 ### 7.1 Dimensions Are Powers of 2
 
-All textures, except for UI textures, must have its dimensions in multiples of powers of 2. Textures do not have to be square.
+Tutte le textures, tranne per quelle della UI, devono avere le loro dimensioni in multipli di potenza di 2. Le textures non devono essere per forza quadrate.
 
-For example, `128x512`, `1024x1024`, `2048x1024`, `1024x2048`, `1x512`.
+Per esempio, `128x512`, `1024x1024`, `2048x1024`, `1024x2048`, `1x512`.
 
 <a name="7.2"></a>
 <a name="textures-density"></a>
 ### 7.2 Texture Density Should Be Uniform
 
-Tutte le textures dovrebbero essere della dimensione appropriata per il loro standard use case. Appropriate texture density varia da progetto a progetto, ma tutte le textures di quel progetto dovrebbero avere density costante.
+Tutte le textures dovrebbero essere della dimensione appropriata per il loro standard use case. La pià appropriata texture density varia da progetto a progetto, ma tutte le textures di quel progetto dovrebbero avere density costante.
 
-Per esempio, if a project's texture density is 8 pixel per 1 unit, a texture that is meant to be applied to a 100x100 unit cube should be 1024x1024, as that is the closest power of 2 that matches the project's texture density.
+Per esempio, se la texture density di un progetto è di is 8 pixel per 1 unit, una texture che deve essere applicata su un cubo di 100x100 unit dovrebbe essere 1024x1024, perchè è la potenza di 2 più vicina a combaciare la texture density del progetto.
 
 <a name="7.3"></a>
 <a name="textures-max-size"></a>
 ### 7.3 Textures Should Be No Bigger than 8192
 
-No texture should have a dimension that exceeds 8192 in size, unless you have a very explicit reason to do so. Often, using a texture this big is simply just a waste of resources.
+Nessuna texture dovrebbe avere dimensioni che superano 8192 in grandezza, a meno che non hai un motivo molto valido per farlo. Spesso, usare una texture così grande è semplicemente uno spreco di risorse.
 
 <a name="7.4"></a>
 <a name="textures-group"></a>
 ### 7.4 Textures Should Be Grouped Correctly
 
-Every texture has a Texture Group property used for LODing, and this should be set correctly based on its use. For example, all UI textures should belong in the UI texture group.
+Ogni texture ha un Texture Group property usato per il LODing, e and this dovrebbe essere impostato correttamente a seconda di come viene usato. Per esempio, tutte le texture della UI dovrebbero stare nell' UI texture group.
 
 **[⬆ Back to Top](#table-of-contents)**
 
