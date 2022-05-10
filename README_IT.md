@@ -1423,9 +1423,9 @@ For example, `128x512`, `1024x1024`, `2048x1024`, `1024x2048`, `1x512`.
 <a name="textures-density"></a>
 ### 7.2 Texture Density Should Be Uniform
 
-All textures should be of a size appropriate for their standard use case. Appropriate texture density varies from project to project, but all textures within that project should have a consistent density.
+Tutte le textures dovrebbero essere della dimensione appropriata per il loro standard use case. Appropriate texture density varia da progetto a progetto, ma tutte le textures di quel progetto dovrebbero avere density costante.
 
-For example, if a project's texture density is 8 pixel per 1 unit, a texture that is meant to be applied to a 100x100 unit cube should be 1024x1024, as that is the closest power of 2 that matches the project's texture density.
+Per esempio, if a project's texture density is 8 pixel per 1 unit, a texture that is meant to be applied to a 100x100 unit cube should be 1024x1024, as that is the closest power of 2 that matches the project's texture density.
 
 <a name="7.3"></a>
 <a name="textures-max-size"></a>
