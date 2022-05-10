@@ -1232,7 +1232,7 @@ Wires dovrebbero avere inizi e fini chiari. Non dovresti mai srotolare in testa 
 <a name="bp-graphs-align-wires"></a>
 #### 3.4.2 Align Wires Not Nodes
 
-Allinea sempre wires, non nodes. Non puoi sempre controllare la grandezza e la pin location in un node, ma puoi sempre controllare il posto di un nodo e quindi controllare il wires. Wires dritti rendono un flow di lettura chiaro e lineare. Wiggly wires wear wits wickedly. Puoi raddrizzare i wires usando il Straighten Connections command con BP nodes selected. Hotkey: Q
+Allinea sempre wires, non nodes. Non puoi sempre controllare la grandezza e la pin location in un node, ma puoi sempre controllare il posto di un nodo e quindi controllare il wires. Wires dritti rendono un flow di lettura chiaro e lineare. Wiggly wires wear wits wickedly. Puoi raddrizzare i wires usando il Straighten Connections command con BP nodes selected. Hotkey: Q Q
 
 Good example: The tops of the nodes are staggered to keep a perfectly straight white exec line.
 ![Aligned By Wires](https://github.com/Allar/ue5-style-guide/blob/main/images/bp-graphs-align-wires-good.png?raw=true "Aligned By Wires")
