@@ -1247,27 +1247,27 @@ Acceptable Example: Certain nodes might not cooperate no matter how you use the 
 <a name="bp-graphs-exec-first-class"></a>
 #### 3.4.3 White Exec Lines Are Top Priority
 
-If you ever have to decide between straightening a linear white exec line or straightening data lines of some kind, always straighten the white exec line.
+Se avessi mai da decidere tra raddrizzare un linear white exec line o addrizzare data lines di qualche tipo, raddrizza sempre la white exec line.
 
 <a name="3.4.4"></a>
 <a name="bp-graphs-block-comments"></a>
 #### 3.4.4 Graphs Should Be Reasonably Commented
 
-Blocks of nodes should be wrapped in comments that describe their higher-level behavior. While every function should be well named so that each individual node is easily readable and understandable, groups of nodes contributing to a purpose should have their purpose described in a comment block. If a function does not have many blocks of nodes and its clear that the nodes are serving a direct purpose in the function's goal, then they do not need to be commented as the function name and  description should suffice.
+Blocks of nodes dovrebbero essere wrapped in commenti che descrivono il loro higher-level behavior. While every function should be well named so that each individual node is easily readable and understandable, groups of nodes contributing to a purpose should have their purpose described in a comment block. If a function does not have many blocks of nodes and its clear that the nodes are serving a direct purpose in the function's goal, then they do not need to be commented as the function name and  description should suffice.
 
 <a name="3.4.5"></a>
 <a name="bp-graphs-cast-error-handling"></a>
 #### 3.4.5 Graphs Should Handle Casting Errors Where Appropriate
 
-If a function or event assumes that a cast always succeeds, it should appropriately report a failure in logic if the cast fails. This lets others know why something that is 'supposed to work' doesn't. A function should also attempt a graceful recover after a failed cast if it's known that the reference being casted could ever fail to be casted.
+Se una function o event assumes che un cast always succeeds, dovrebbe giustamente far notare una failure in logic se cast fails. Ciò fa sapere gli altri perchè qualcosa che 'dovrebbe funzionare' non va. Una function dovrebbe provare a fare un graceful recover dopo un failed cast se si sà che la reference reference being casted potrebbe fallire nell'essere casted.
 
-This does not mean every cast node should have its failure handled. In many cases, especially events regarding things like collisions, it is expected that execution flow terminates on a failed cast quietly.
+Ciò non significa che ogni cast node dovrebbe avere its failure handled. In tanti casi, specialmente events riguardandi collisioni, ci si aspetta che l'execution flow termini in un failed cast senza dar notifiche.
 
 <a name="3.4.6"></a>
 <a name="bp-graphs-dangling-nodes"></a>
 #### 3.4.6 Graphs Should Not Have Any Dangling / Loose / Dead Nodes
 
-All nodes in all blueprint graphs must have a purpose. You should not leave dangling blueprint nodes around that have no purpose or are not executed.
+Tutti i nodes in tutti i blueprint graphs devono avere uno scopo. Non dovresti lasciare blueprint nodes in giro che non hanno uno scopo o che non sono executed.
 
 **[⬆ Back to Top](#table-of-contents)**
 
@@ -1331,13 +1331,13 @@ This is a subjective check on a per-project basis, however all assets should be 
 <a name="ng"></a>
 ## 5. Niagara
 
-This section will focus on Niagara assets and their internals.
+Questa sezione si concentrerà sui Niagara assets e i loro internals.
 
 <a name="5.1"></a>
 <a name="ng-rules"></a>
 ### 5.1 No Spaces, Ever
 
-As mentioned in [00.1 Forbidden Identifiers](#00), spaces and all white space characters are forbidden in identifiers. This is especially true for Niagara systems as it makes working with things significantly harder if not impossible when working with HLSL or other means of scripting within Niagara and trying to reference an identifier.
+Come menzionato in [00.1 Forbidden Identifiers](#00), spazi e tutti i caratteri  all white sono vietati negli identifiers. Questo è importante sopratutto per i Niagara systems perchè rende più difficile se non impossibile lavorare con gli HLSL o altri means of scripting within Niagara e trying to reference an identifier.
 
 (Original Contribution by [@dunenkoff](https://github.com/Allar/ue5-style-guide/issues/58))
 
