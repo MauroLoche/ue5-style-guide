@@ -1277,25 +1277,25 @@ Tutti i nodes in tutti i blueprint graphs devono avere uno scopo. Non dovresti l
 <a name="s"></a>
 ## 4. Static Meshes
 
-This section will focus on Static Mesh assets and their internals.
+Questa sezione tratterà gli Static Mesh assets e i loro internals.
 
 <a name="4.1"></a>
 <a name="s-uvs"></a>
 ### 4.1 Static Mesh UVs
 
-If Linter is reporting bad UVs and you can't seem to track it down, open the resulting `.log` file in your project's `Saved/Logs` folder for exact details as to why it's failing. I am hoping to include these messages in the Lint report in the future.
+Se Linter avvisa bad UVs e non riesci a to track it down, apri il resulting `.log` file presente nella cartella `Saved/Logs` del tuo progetto per i sapere i motivi precisi per cui sta failing. Spero di includere questi messaggi nel Lint report nel futuro.
 
 <a name="4.1.1"></a>
 <a name="s-uvs-no-missing"></a>
 #### 4.1.1 All Meshes Must Have UVs
 
-Pretty simple. All meshes, regardless how they are to be used, should not be missing UVs.
+Abbastanza semplice. Tutte le meshes, a prescindere da come verranno usate, non dovrebbero avere missing UVs.
 
 <a name="4.1.2"></a>
 <a name="s-uvs-no-overlapping"></a>
 #### 4.1.2 All Meshes Must Not Have Overlapping UVs for Lightmaps
 
-Pretty simple. All meshes, regardless how they are to be used, should have valid non-overlapping UVs.
+Abbastanza semplice. Tutte le meshes, a prescindere da come verranno usate, dovrebbero avere UVs valide e non-overlapping.
 
 <a name="4.2"></a>
 <a name="s-lods"></a>
@@ -1352,17 +1352,17 @@ Come menzionato in [00.1 Forbidden Identifiers](#00), spazi e tutti i caratteri 
 
 [See Terminology Note](#terms-level-map) regarding "levels" vs "maps".
 
-This section will focus on Level assets and their internals.
+Questa sezione si concentrerà sui Level assets e i loro internals.
 
 <a name="6.1"></a>
 <a name="levels-no-errors-or-warnings"></a>
 ### 6.1 No Errors Or Warnings
 
-All levels should load with zero errors or warnings. If a level loads with any errors or warnings, they should be fixed immediately to prevent cascading issues.
+Tutti i levels dovrebbero caricare senza errori nè warnings. Se un livello carica con qualsiasi tipo di errore o warning, dovrebbero essere fixati immediatamente per prevenire problemi a cascata.
 
-You can run a map check on an open level in the editor by using the console command "map check".
+Puoi fare un map check in un open level nell'editor usando il comando di console "map check".
 
-Please note: Linter is even more strict on this than the editor is currently, and will catch load errors that the editor will resolve on its own.
+Per favore ricorda: Linter è anche più ristretto su questo rispetto all'editor, e acchiapperò load errors che l'editor risolverà per conto proprio.
 
 <a name="6.2"></a>
 <a name="levels-lighting-should-be-built"></a>
