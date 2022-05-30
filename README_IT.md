@@ -1301,13 +1301,13 @@ Abbastanza semplice. Tutte le meshes, a prescindere da come verranno usate, dovr
 <a name="s-lods"></a>
 ### 4.2 LODs Should Be Set Up Correctly
 
-This is a subjective check on a per-project basis, but as a general rule any mesh that can be seen at varying distances should have proper LODs.
+Questo è un subjective check che varia da progetto a progetto, ma come regola generale qualsiasi mesh ch può essere vista a varie distanze dovrebbe avere i LODs correttamente impostati.
 
 <a name="4.3"></a>
 <a name="s-modular-snapping"></a>
 ### 4.3 Modular Socketless Assets Should Snap To The Grid Cleanly
 
-This is a subjective check on a per-asset basis, however any modular socketless assets should snap together cleanly based on the project's grid settings.
+Questo è un subjective check che varia da progetto a progett, ma qualsiasi modular socketless assets dovrebbero snap together cleanly basati sulla project's grid settings.
 
 It is up to the project whether to snap based on a power of 2 grid or on a base 10 grid. However if you are authoring modular socketless assets for the marketplace, Epic's requirement is that they snap cleanly when the grid is set to 10 units or bigger.
 
@@ -1339,7 +1339,7 @@ Questa sezione si concentrerà sui Niagara assets e i loro internals.
 
 Come menzionato in [00.1 Forbidden Identifiers](#00), spazi e tutti i caratteri  all white sono vietati negli identifiers. Questo è importante sopratutto per i Niagara systems perchè rende più difficile se non impossibile lavorare con gli HLSL o altri means of scripting within Niagara e trying to reference an identifier.
 
-(Original Contribution by [@dunenkoff](https://github.com/Allar/ue5-style-guide/issues/58))
+(Contributo originale a cura di [@dunenkoff](https://github.com/Allar/ue5-style-guide/issues/58))
 
 
 **[⬆ Back to Top](#table-of-contents)**
@@ -1362,33 +1362,33 @@ Tutti i levels dovrebbero caricare senza errori nè warnings. Se un livello cari
 
 Puoi fare un map check in un open level nell'editor usando il comando di console "map check".
 
-Per favore ricorda: Linter è anche più ristretto su questo rispetto all'editor, e acchiapperò load errors che l'editor risolverà per conto proprio.
+Per favore ricorda: Linter è anche più ristretto su questo rispetto all'editor, e acchiapperà load errors che l'editor risolverà per conto proprio.
 
 <a name="6.2"></a>
 <a name="levels-lighting-should-be-built"></a>
 ### 6.2 Lighting Should Be Built
 
-It is normal during development for levels to occasionally not have lighting built. When doing a test/internal/shipping build or any build that is to be distributed however, lighting should always be built.
+È normale durante lo sviluppo le luci dei levels non siano built. Tuttavia, quando si fa un test/internal/shipping build o qualsiasi build che dovrà essere distributed however, la lighting dovrebbe essere sempre built.
 
 <a name="6.3"></a>
 <a name="levels-no-visible-z-fighting"></a>
 ### 6.3 No Player Visible Z Fighting
 
-Levels should not have any [z-fighting](https://en.wikipedia.org/wiki/Z-fighting) in all areas visible to the player.
+I levels non dovrebbero avere nessun tipo di [z-fighting](https://en.wikipedia.org/wiki/Z-fighting) in tutte le aree visibili al giocatore.
 
 <a name="6.4"></a>
 <a name="levels-mp-rules"></a>
 ### 6.4 Marketplace Specific Rules
 
-If a project is to be sold on the UE4 Marketplace, it must follow these rules.
+Se un progetto è da mettere in vendita nell' UE4 Marketplace, deve seguire le seguenti regole.
 
 <a name="6.4.1"></a>
 <a name="levels-mp-rules-overview"></a>
 #### 6.4.1 Overview Level
 
-If your project contains assets that should be visualized or demoed, you must have a map within your project that contains the name "Overview".
+Se il tuo progetto contiene assets che dovrebbero essere visualized o demoed, dovresti avere una map nel tuo progetto che abbia il nome  "Overview".
 
-This overview map, if it is visualizing assets, should be set up according to [Epic's guidelines](http://help.epicgames.com/customer/en/portal/articles/2592186-marketplace-submission-guidelines-preparing-your-assets#Required%20Levels%20and%20Maps).
+Questa overview map, se sta visualizzando assets, dovrebbe essere impostata rispettando le [Epic's guidelines](http://help.epicgames.com/customer/en/portal/articles/2592186-marketplace-submission-guidelines-preparing-your-assets#Required%20Levels%20and%20Maps).
 
 For example, `InteractionComponent_Overview`.
 
@@ -1396,7 +1396,7 @@ For example, `InteractionComponent_Overview`.
 <a name="levels-mp-rules-demo"></a>
 #### 6.4.2 Demo Level
 
-If your project contains assets that should be demoed or come with some sort of tutorial, you must have a map within your project that contains the name "Demo". This level should also contain documentation within it in some form that illustrates how to use your project. See Epic's Content Examples project for good examples on how to do this.
+Se il tuo progetto contiene asset che dovrebbero essere demoed o come con qualche tipo di tutorial, dovresti avere una map dentro il tuo progetto che contiene il nome "Demo". Questo level dovrebbe inoltre contenere documentazione all'interno di esso in qualche forma che illustri come usare il progetto. Controlla gli Epic's Content Examples project per alcuni validi esempi su come farlo.
 
 If your project is a gameplay mechanic or other form of system as opposed to an art pack, this can be the same as your "Overview" map.
 
@@ -1442,24 +1442,24 @@ Ogni texture ha un Texture Group property usato per il LODing, e and this dovreb
 **[⬆ Back to Top](#table-of-contents)**
 
 
-## Major Contributors
+## Collaboratori principali
 
 * [Michael Allar](http://allarsblog.com): [GitHub](https://github.com/Allar), [Twitter](https://twitter.com/michaelallar)
 * [CosmoMyzrailGorynych](https://github.com/CosmoMyzrailGorynych)
 * [billymcguffin](https://github.com/billymcguffin)
 * [akenatsu](https://github.com/akenatsu)
 
-## License
+## Licenza
 
 Copyright (c) 2016 Gamemakin LLC
 
-See [LICENSE](/LICENSE)
+Vedi anche [LICENSE](/LICENSE)
 
 **[⬆ Back to Top](#table-of-contents)**
 
 
-## Amendments
+## Modifiche
 
-We encourage you to fork this guide and change the rules to fit your team's style guide. Below, you may list some amendments to the style guide. This allows you to periodically update your style guide without having to deal with merge conflicts.
+Vi incoraggiamo a fare un fork di questa guida e cambiare le regole affinchè siano più adeguate al your team's style guide. Sotto, potete elencare le vostre rettifiche a questo manuale di stile. Ciò vi permette di aggiornare regolarmente il manuale di stile senza avere problemi di  merge conflicts.
 
 # };
