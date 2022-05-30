@@ -1460,6 +1460,6 @@ Vedi anche [LICENSE](/LICENSE)
 
 ## Modifiche
 
-Vi incoraggiamo a fare un fork di questa guida e cambiare le regole affinchè siano più adeguate al your team's style guide. Sotto, potete elencare le vostre rettifiche a questo manuale di stile. Ciò vi permette di aggiornare regolarmente il manuale di stile senza avere problemi di  merge conflicts.
+Vi incoraggiamo a fare un fork di questa guida e cambiare le regole affinchè siano più adeguate al your team's style guide. Sotto, potete elencare le vostre rettifiche a questo manuale di stile. Ciò vi permette di aggiornare regolarmente il manuale di stile senza avere problemi di  merge conflicts..
 
 # };
