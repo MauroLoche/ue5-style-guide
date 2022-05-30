@@ -1309,19 +1309,19 @@ Questo è un subjective check che varia da progetto a progetto, ma come regola g
 
 Questo è un subjective check che varia da progetto a progett, ma qualsiasi modular socketless assets dovrebbero snap together cleanly basati sulla project's grid settings.
 
-It is up to the project whether to snap based on a power of 2 grid or on a base 10 grid. However if you are authoring modular socketless assets for the marketplace, Epic's requirement is that they snap cleanly when the grid is set to 10 units or bigger.
+Sta al progetto se fare snap basato su una power of 2 grid o a una base 10 grid. Tuttavia se stai creando modular socketless assets per il marketplace, i requisiti di Epic è che facciano uno snap pulito quando la griglia è impostata a 10 unità o più.
 
 <a name="4.4"></a>
 <a name="s-collision"></a>
 ### 4.4 All Meshes Must Have Collision
 
-Regardless of whether an asset is going to be used for collision in a level, all meshes should have proper collision defined. This helps the engine with things such as bounds calculations, occlusion, and lighting. Collision should also be well-formed to the asset.
+A prescindere se un asset verrà usato per collisioni in un level, tutte le meshes dovrebbero avere le loro proprie collisioni ben definite. Ciò aiuta Unreal Engine nelle bounds calculations, occlusion, e lighting. Collision dovrebbero avere una forma adeguata all'asset.
 
 <a name="4.5"></a>
 <a name="s-scaled"></a>
 ### 4.5 All Meshes Should Be Scaled Correctly
 
-This is a subjective check on a per-project basis, however all assets should be scaled correctly to their project. Level designers or blueprint authors should not have to tweak the scale of meshes to get them to confirm in the editor. Scaling meshes in the engine should be treated as a scale override, not a scale correction.
+Questo è un subjective check che varia da progettoa progetto, tuttavia tutti gli asset dovrebbero essere nella scala corretta del progetto a cui appartengono. I Level designers o i creatori di blueprint non dovrebbero correggere la grandezza delle meshes per fare in modo che vengano confermate nell'editor. Scaling meshes in Unreal Engine dovrebbero essere trattate come una scale override, not una scale correction.
 
 **[⬆ Back to Top](#table-of-contents)**
 
